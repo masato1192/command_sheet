@@ -940,11 +940,8 @@
               <tr><td class="cmd"><code>claude -c</code></td><td>直前の会話を継続</td></tr>
               <tr><td class="cmd"><code>claude -r "<var>session</var>"</code></td><td>セッションIDまたは名前で再開</td></tr>
               <tr><td class="cmd"><code>claude --model <var>model</var></code></td><td>モデルを指定して起動（opus/sonnet/haiku）</td></tr>
-              <tr><td class="cmd"><code>claude --allowedTools "<var>tools</var>"</code></td><td>使用可能なツールを制限</td></tr>
               <tr><td class="cmd"><code>claude --verbose</code></td><td>詳細ログを表示</td></tr>
               <tr><td class="cmd"><code>claude -o <var>format</var></code></td><td>出力形式を指定（text/json/stream-json）</td></tr>
-              <tr><td class="cmd"><code>claude --permission-mode <var>mode</var></code></td><td>権限モードを指定して起動</td></tr>
-              <tr><td class="cmd"><code>claude --dangerously-skip-permissions</code></td><td>全権限確認をスキップ</td></tr>
               <tr><td class="cmd"><code>claude -w</code></td><td>Gitワークツリーで隔離して起動</td></tr>
               <tr><td class="cmd"><code>claude --max-turns <var>N</var></code></td><td>エージェントのターン数を制限（-p用）</td></tr>
               <tr><td class="cmd"><code>claude --max-budget-usd <var>N</var></code></td><td>API使用量の上限をドルで設定（-p用）</td></tr>
@@ -958,7 +955,29 @@
         </article>
 
         <article class="category">
-          <h2>セッション・ナビゲーション</h2>
+          <h2>権限モード</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Item</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>default</code></td><td>初回使用時に都度確認（デフォルト）</td></tr>
+              <tr><td class="cmd"><code>acceptEdits</code></td><td>ファイル編集を自動承認、コマンドは都度確認</td></tr>
+              <tr><td class="cmd"><code>plan</code></td><td>読み取り専用（編集・コマンド実行不可）</td></tr>
+              <tr><td class="cmd"><code>bypassPermissions</code></td><td>全操作を自動許可（CI・隔離環境専用）</td></tr>
+              <tr><td class="cmd"><kbd>Shift+Tab</kbd></td><td>通常→自動承認→プラン を循環切替</td></tr>
+              <tr><td class="cmd"><code>--permission-mode <var>mode</var></code></td><td>起動時に権限モードを指定</td></tr>
+              <tr><td class="cmd"><code>--dangerously-skip-permissions</code></td><td>全権限確認をスキップ（CI/自動化用）</td></tr>
+              <tr><td class="cmd"><code>/permissions</code></td><td>権限設定を表示・更新</td></tr>
+              <tr><td class="cmd"><code>"allow": ["<var>Bash(npm *)</var>"]</code></td><td>settings.jsonで自動許可ルールを定義</td></tr>
+              <tr><td class="cmd"><code>"deny": ["<var>Read(.env)</var>"]</code></td><td>settings.jsonで自動拒否ルールを定義</td></tr>
+              <tr><td class="cmd"><code>--allowedTools "<var>Bash(git *)</var>"</code></td><td>許可なしで実行可能なツールを指定</td></tr>
+              <tr><td class="cmd"><code>--disallowedTools "<var>WebFetch</var>"</code></td><td>完全に無効化するツールを指定</td></tr>
+              <tr><td class="cmd"><code>CLAUDE_CODE_SIMPLE=1</code></td><td>Bash・ファイル読取・編集のみに制限</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>セッション・コンテキスト</h2>
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
@@ -967,15 +986,6 @@
               <tr><td class="cmd"><code>/rename &lt;<var>name</var>&gt;</code></td><td>現在のセッション名を変更</td></tr>
               <tr><td class="cmd"><code>/teleport</code></td><td>claude.aiのリモートセッションを再開</td></tr>
               <tr><td class="cmd"><code>/desktop</code></td><td>セッションをDesktopアプリに引き継ぎ</td></tr>
-            </tbody>
-          </table>
-        </article>
-
-        <article class="category">
-          <h2>コンテキスト・会話管理</h2>
-          <table>
-            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
-            <tbody>
               <tr><td class="cmd"><code>/clear</code></td><td>会話履歴をクリア</td></tr>
               <tr><td class="cmd"><code>/compact [<var>指示</var>]</code></td><td>会話を圧縮（フォーカス指示付き可）</td></tr>
               <tr><td class="cmd"><code>/rewind</code></td><td>会話やコードを巻き戻し</td></tr>
@@ -987,44 +997,18 @@
         </article>
 
         <article class="category">
-          <h2>設定</h2>
+          <h2>モデル・シンキング</h2>
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>/config</code></td><td>設定画面を開く（Configタブ）</td></tr>
-              <tr><td class="cmd"><code>/status</code></td><td>バージョン・モデル・アカウント情報を表示</td></tr>
-              <tr><td class="cmd"><code>/permissions</code></td><td>権限設定を表示・更新</td></tr>
-              <tr><td class="cmd"><code>/statusline</code></td><td>ステータスラインUIを設定</td></tr>
-              <tr><td class="cmd"><code>/theme</code></td><td>カラーテーマを変更</td></tr>
-              <tr><td class="cmd"><code>/vim</code></td><td>Vimスタイル編集モードを切替</td></tr>
-              <tr><td class="cmd"><code>/hooks</code></td><td>フックの管理（表示・追加・削除）</td></tr>
-              <tr><td class="cmd"><code>/terminal-setup</code></td><td>Shift+Enterキーバインドを設定</td></tr>
-            </tbody>
-          </table>
-        </article>
-
-        <article class="category">
-          <h2>モデル・実行</h2>
-          <table>
-            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
-            <tbody>
-              <tr><td class="cmd"><code>/model</code></td><td>AIモデルを選択・変更（←→でeffort調整）</td></tr>
+              <tr><td class="cmd"><code>/model</code></td><td>AIモデルを選択・変更</td></tr>
+              <tr><td class="cmd"><code>/model</code> + <kbd>←→</kbd></td><td>effortレベルを調整（low/medium/high）</td></tr>
+              <tr><td class="cmd"><code>/fast</code></td><td>高速モード切替（同一モデル、2.5倍速）</td></tr>
               <tr><td class="cmd"><code>/plan</code></td><td>プランモードに入る</td></tr>
               <tr><td class="cmd"><code>/cost</code></td><td>トークン使用量とコストを表示</td></tr>
               <tr><td class="cmd"><code>/stats</code></td><td>日次使用量・セッション履歴を視覚化</td></tr>
               <tr><td class="cmd"><code>/usage</code></td><td>プラン使用量とレートリミットを表示</td></tr>
-            </tbody>
-          </table>
-        </article>
-
-        <article class="category">
-          <h2>シンキング・拡張思考</h2>
-          <table>
-            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
-            <tbody>
               <tr><td class="cmd"><kbd>Option+T</kbd></td><td>拡張思考のオン/オフを切替（デフォルトON）</td></tr>
-              <tr><td class="cmd"><code>/model</code> + <kbd>←→</kbd></td><td>effortレベルを調整（low/medium/high）</td></tr>
-              <tr><td class="cmd"><code>/fast</code></td><td>高速モード切替（同一モデル、2.5倍速）</td></tr>
               <tr><td class="cmd"><kbd>Ctrl+O</kbd></td><td>詳細出力（思考プロセスの表示）を切替</td></tr>
               <tr><td class="cmd"><code>CLAUDE_CODE_EFFORT_LEVEL</code></td><td>effortレベルを環境変数で設定（low/medium/high）</td></tr>
               <tr><td class="cmd"><code>MAX_THINKING_TOKENS=0</code></td><td>拡張思考を無効化（Opus 4.6は0のみ有効）</td></tr>
@@ -1033,7 +1017,26 @@
         </article>
 
         <article class="category">
-          <h2>プロジェクト・メモリ</h2>
+          <h2>設定・診断</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>/config</code></td><td>設定画面を開く（Configタブ）</td></tr>
+              <tr><td class="cmd"><code>/status</code></td><td>バージョン・モデル・アカウント情報を表示</td></tr>
+              <tr><td class="cmd"><code>/statusline</code></td><td>ステータスラインUIを設定</td></tr>
+              <tr><td class="cmd"><code>/theme</code></td><td>カラーテーマを変更</td></tr>
+              <tr><td class="cmd"><code>/vim</code></td><td>Vimスタイル編集モードを切替</td></tr>
+              <tr><td class="cmd"><code>/hooks</code></td><td>フックの管理（表示・追加・削除）</td></tr>
+              <tr><td class="cmd"><code>/terminal-setup</code></td><td>Shift+Enterキーバインドを設定</td></tr>
+              <tr><td class="cmd"><code>/doctor</code></td><td>インストール状態のヘルスチェック</td></tr>
+              <tr><td class="cmd"><code>/debug [<var>説明</var>]</code></td><td>セッションデバッグログでトラブルシュート</td></tr>
+              <tr><td class="cmd"><code>/mcp</code></td><td>MCPサーバー接続を管理</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>メモリ・CLAUDE.md</h2>
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
@@ -1047,18 +1050,6 @@
               <tr><td class="cmd"><code>CLAUDE.local.md</code></td><td>プロジェクトローカルメモリ（個人用）</td></tr>
               <tr><td class="cmd"><code>.claude/settings.json</code></td><td>プロジェクト設定（権限・フック等）</td></tr>
               <tr><td class="cmd"><code>@<var>path/to/file</var></code></td><td>CLAUDE.md内でファイルをインポート</td></tr>
-            </tbody>
-          </table>
-        </article>
-
-        <article class="category">
-          <h2>デバッグ・診断</h2>
-          <table>
-            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
-            <tbody>
-              <tr><td class="cmd"><code>/doctor</code></td><td>インストール状態のヘルスチェック</td></tr>
-              <tr><td class="cmd"><code>/debug [<var>説明</var>]</code></td><td>セッションデバッグログでトラブルシュート</td></tr>
-              <tr><td class="cmd"><code>/mcp</code></td><td>MCPサーバー接続を管理</td></tr>
             </tbody>
           </table>
         </article>
@@ -1088,58 +1079,24 @@
         </article>
 
         <article class="category">
-          <h2>ツール制御・権限</h2>
+          <h2>フック・サブエージェント</h2>
           <table>
             <thead class="sr-only"><tr><th>Item</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>--tools "<var>Read,Edit,Bash</var>"</code></td><td>使用可能なツールを制限</td></tr>
-              <tr><td class="cmd"><code>--allowedTools "<var>Bash(git *)</var>"</code></td><td>許可なしで実行可能なツールを指定</td></tr>
-              <tr><td class="cmd"><code>--disallowedTools "<var>WebFetch</var>"</code></td><td>完全に無効化するツールを指定</td></tr>
-              <tr><td class="cmd"><code>CLAUDE_CODE_SIMPLE=1</code></td><td>Bash・ファイル読取・編集のみに制限</td></tr>
-              <tr><td class="cmd"><code>"allow": ["<var>Bash(npm *)</var>"]</code></td><td>settings.jsonで自動許可ルールを定義</td></tr>
-              <tr><td class="cmd"><code>"deny": ["<var>Read(.env)</var>"]</code></td><td>settings.jsonで自動拒否ルールを定義</td></tr>
-              <tr><td class="cmd"><code>default</code></td><td>権限モード: 初回使用時に確認</td></tr>
-              <tr><td class="cmd"><code>acceptEdits</code></td><td>権限モード: ファイル編集を自動承認</td></tr>
-              <tr><td class="cmd"><code>plan</code></td><td>権限モード: 読み取り専用（編集・実行不可）</td></tr>
-              <tr><td class="cmd"><code>bypassPermissions</code></td><td>権限モード: 全許可（隔離環境専用）</td></tr>
-            </tbody>
-          </table>
-        </article>
-
-        <article class="category">
-          <h2>フック</h2>
-          <table>
-            <thead class="sr-only"><tr><th>Event</th><th>Description</th></tr></thead>
-            <tbody>
-              <tr><td class="cmd"><code>PreToolUse</code></td><td>ツール実行前（ブロック可）</td></tr>
-              <tr><td class="cmd"><code>PostToolUse</code></td><td>ツール実行成功後（フィードバック）</td></tr>
-              <tr><td class="cmd"><code>UserPromptSubmit</code></td><td>プロンプト送信時（ブロック可）</td></tr>
-              <tr><td class="cmd"><code>Stop</code></td><td>応答完了時（ブロック可）</td></tr>
-              <tr><td class="cmd"><code>SubagentStart</code></td><td>サブエージェント起動時</td></tr>
-              <tr><td class="cmd"><code>SubagentStop</code></td><td>サブエージェント終了時（ブロック可）</td></tr>
-              <tr><td class="cmd"><code>SessionStart</code></td><td>セッション開始時</td></tr>
-              <tr><td class="cmd"><code>SessionEnd</code></td><td>セッション終了時</td></tr>
-              <tr><td class="cmd"><code>PreCompact</code></td><td>コンテキスト圧縮前</td></tr>
-              <tr><td class="cmd"><code>command</code></td><td>タイプ: シェルコマンドを実行（stdin: JSON）</td></tr>
-              <tr><td class="cmd"><code>prompt</code></td><td>タイプ: LLM単発評価（ok: true/false）</td></tr>
-              <tr><td class="cmd"><code>agent</code></td><td>タイプ: マルチターンサブエージェント</td></tr>
-            </tbody>
-          </table>
-        </article>
-
-        <article class="category">
-          <h2>サブエージェント</h2>
-          <table>
-            <thead class="sr-only"><tr><th>Agent</th><th>Description</th></tr></thead>
-            <tbody>
-              <tr><td class="cmd"><code>Explore</code></td><td>高速な読み取り専用エージェント（Haiku）</td></tr>
-              <tr><td class="cmd"><code>Plan</code></td><td>プラン作成用リサーチエージェント</td></tr>
-              <tr><td class="cmd"><code>general-purpose</code></td><td>全ツール使用可能な汎用エージェント</td></tr>
-              <tr><td class="cmd"><code>Bash</code></td><td>コマンド実行専用エージェント</td></tr>
+              <tr><td class="cmd"><code>PreToolUse</code></td><td>フック: ツール実行前（ブロック可）</td></tr>
+              <tr><td class="cmd"><code>PostToolUse</code></td><td>フック: ツール実行成功後（フィードバック）</td></tr>
+              <tr><td class="cmd"><code>UserPromptSubmit</code></td><td>フック: プロンプト送信時（ブロック可）</td></tr>
+              <tr><td class="cmd"><code>Stop</code></td><td>フック: 応答完了時（ブロック可）</td></tr>
+              <tr><td class="cmd"><code>SubagentStart / Stop</code></td><td>フック: サブエージェント起動・終了時</td></tr>
+              <tr><td class="cmd"><code>SessionStart / End</code></td><td>フック: セッション開始・終了時</td></tr>
+              <tr><td class="cmd"><code>PreCompact</code></td><td>フック: コンテキスト圧縮前</td></tr>
+              <tr><td class="cmd"><code>command / prompt / agent</code></td><td>フックタイプ: シェル実行 / LLM評価 / マルチターン</td></tr>
+              <tr><td class="cmd"><code>Explore</code></td><td>エージェント: 高速な読み取り専用（Haiku）</td></tr>
+              <tr><td class="cmd"><code>Plan</code></td><td>エージェント: プラン作成用リサーチ</td></tr>
+              <tr><td class="cmd"><code>general-purpose</code></td><td>エージェント: 全ツール使用可能な汎用</td></tr>
+              <tr><td class="cmd"><code>Bash</code></td><td>エージェント: コマンド実行専用</td></tr>
               <tr><td class="cmd"><code>.claude/agents/<var>name</var>.md</code></td><td>カスタムエージェントを定義</td></tr>
-              <tr><td class="cmd"><code>claude agents</code></td><td>設定済みサブエージェントを一覧表示</td></tr>
               <tr><td class="cmd"><code>isolation: worktree</code></td><td>Gitワークツリーで隔離実行</td></tr>
-              <tr><td class="cmd"><code>memory: <var>project</var></code></td><td>クロスセッション学習を有効化</td></tr>
             </tbody>
           </table>
         </article>
