@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Command Cheat Sheet</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* === Typography === */
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid #000;
+      padding-bottom: 0.375rem;
+      margin-bottom: 0.75rem;
+    }
+
+    code {
+      font-family: "SF Mono", "Menlo", "Consolas", monospace;
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+
+    kbd {
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.9375rem;
+    }
+
+    /* === Header & Tabs === */
+    header {
+      border-bottom: 3px solid #000;
+      margin-bottom: 2rem;
+      padding-bottom: 0;
+    }
+
+    header p {
+      font-size: 0.875rem;
+      color: #555;
+      margin-top: 0.25rem;
+      margin-bottom: 1rem;
+    }
+
+    nav[role="tablist"] {
+      display: flex;
+      gap: 0;
+    }
+
+    nav button[role="tab"] {
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid #000;
+      border-bottom: none;
+      background: #fff;
+      color: #000;
+      cursor: pointer;
+      position: relative;
+      top: 3px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    nav button[role="tab"] + button[role="tab"] {
+      border-left: none;
+    }
+
+    nav button[role="tab"][aria-selected="true"] {
+      background: #000;
+      color: #fff;
+    }
+
+    nav button[role="tab"]:hover:not([aria-selected="true"]) {
+      background: #f0f0f0;
+    }
+
+    nav button[role="tab"]:focus-visible {
+      outline: 2px solid #000;
+      outline-offset: 2px;
+      z-index: 1;
+    }
+
+    /* === Quick Reference === */
+    .quick-ref {
+      grid-column: 1 / -1;
+      border-bottom: 2px solid #000;
+      padding-bottom: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .quick-ref table {
+      display: block;
+      width: 100%;
+    }
+
+    .quick-ref thead {
+      display: none;
+    }
+
+    .quick-ref tbody {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 2rem;
+    }
+
+    .quick-ref tr {
+      display: flex;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .quick-ref td.cmd {
+      flex-shrink: 0;
+      width: 45%;
+      padding-right: 1rem;
+    }
+
+    .quick-ref td:last-child {
+      flex: 1;
+    }
+
+    @media (max-width: 768px) {
+      .quick-ref tbody {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* === Main Content === */
+    [hidden] {
+      display: none !important;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .category {
+      break-inside: avoid;
+    }
+
+    /* === Command Tables === */
+    .category table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .category tr {
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .category tr:last-child {
+      border-bottom: none;
+    }
+
+    .category td {
+      padding: 0.375rem 0;
+      vertical-align: top;
+    }
+
+    .category td.cmd {
+      width: 40%;
+      padding-right: 1rem;
+      overflow-wrap: break-word;
+    }
+
+    .category td:last-child {
+      color: #333;
+      font-size: 0.875rem;
+    }
+
+    /* === Screen Reader Only === */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    /* === Footer === */
+    footer {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e0e0e0;
+      font-size: 0.75rem;
+      color: #666;
+    }
+
+    /* === Responsive === */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .categories-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav[role="tablist"] {
+        overflow-x: auto;
+      }
+
+      nav button[role="tab"] {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        flex-shrink: 0;
+      }
+
+    }
+
+    @media (max-width: 480px) {
+      .category table,
+      .category tbody,
+      .category tr,
+      .category td {
+        display: block;
+      }
+
+      .category tr {
+        padding: 0.5rem 0;
+      }
+
+      .category td.cmd {
+        width: 100%;
+        padding-right: 0;
+        padding-bottom: 0.125rem;
+        font-weight: 600;
+      }
+
+      .category td:last-child {
+        padding-left: 0;
+      }
+    }
+
+    @media print {
+      nav[role="tablist"] {
+        display: none;
+      }
+
+      [hidden] {
+        display: block !important;
+      }
+
+      .categories-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      section[role="tabpanel"]::before {
+        content: attr(aria-labelledby);
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-bottom: 2px solid #000;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Command Cheat Sheet</h1>
+    <nav role="tablist" aria-label="Topics">
+      <button role="tab" aria-selected="true" aria-controls="panel-terminal" id="tab-terminal">ターミナル操作</button>
+      <button role="tab" aria-selected="false" aria-controls="panel-git" id="tab-git">Git</button>
+      <button role="tab" aria-selected="false" aria-controls="panel-server" id="tab-server">サーバー操作</button>
+      <button role="tab" aria-selected="false" aria-controls="panel-docker" id="tab-docker">Docker</button>
+      <button role="tab" aria-selected="false" aria-controls="panel-claude" id="tab-claude">Claude Code</button>
+      <button role="tab" aria-selected="false" aria-controls="panel-cmux" id="tab-cmux">cmux</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ==================== ターミナル操作 ==================== -->
+    <section role="tabpanel" id="panel-terminal" aria-labelledby="tab-terminal">
+      <div class="categories-grid">
+
+        <article class="category quick-ref">
+          <h2>よく使うコマンド</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>ls -la</code></td><td>隠しファイル含む全ファイルを詳細表示</td></tr>
+              <tr><td class="cmd"><code>cd dir</code></td><td>ディレクトリを移動</td></tr>
+              <tr><td class="cmd"><code>mkdir -p a/b/c</code></td><td>中間ディレクトリも含めて作成</td></tr>
+              <tr><td class="cmd"><code>cp -r src dst</code></td><td>ディレクトリを再帰的にコピー</td></tr>
+              <tr><td class="cmd"><code>mv src dst</code></td><td>ファイル/ディレクトリを移動・リネーム</td></tr>
+              <tr><td class="cmd"><code>rm -rf dir</code></td><td>ディレクトリを強制的に再帰削除</td></tr>
+              <tr><td class="cmd"><code>cat file</code></td><td>ファイル内容を全て表示</td></tr>
+              <tr><td class="cmd"><code>grep -r "pattern" dir</code></td><td>ディレクトリ内を再帰的にパターン検索</td></tr>
+              <tr><td class="cmd"><code>find . -name "*.txt"</code></td><td>ファイル名でファイルを検索</td></tr>
+              <tr><td class="cmd"><code>clear</code></td><td>画面をクリア</td></tr>
+              <tr><td class="cmd"><code>Ctrl+C</code></td><td>実行中のコマンドを中断</td></tr>
+              <tr><td class="cmd"><code>Ctrl+R</code></td><td>コマンド履歴をインクリメンタル検索</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>ファイル操作</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>pwd</code></td><td>カレントディレクトリを表示</td></tr>
+              <tr><td class="cmd"><code>ls -la</code></td><td>隠しファイル含む全ファイルを詳細表示</td></tr>
+              <tr><td class="cmd"><code>cd dir</code></td><td>ディレクトリを移動</td></tr>
+              <tr><td class="cmd"><code>cd -</code></td><td>直前のディレクトリに戻る</td></tr>
+              <tr><td class="cmd"><code>mkdir -p a/b/c</code></td><td>中間ディレクトリも含めて作成</td></tr>
+              <tr><td class="cmd"><code>cp -r src dst</code></td><td>ディレクトリを再帰的にコピー</td></tr>
+              <tr><td class="cmd"><code>mv src dst</code></td><td>ファイル/ディレクトリを移動・リネーム</td></tr>
+              <tr><td class="cmd"><code>rm -rf dir</code></td><td>ディレクトリを強制的に再帰削除</td></tr>
+              <tr><td class="cmd"><code>ln -s target link</code></td><td>シンボリックリンクを作成</td></tr>
+              <tr><td class="cmd"><code>find . -name "*.txt"</code></td><td>ファイル名でファイルを検索</td></tr>
+              <tr><td class="cmd"><code>find . -type f -mtime -7</code></td><td>7日以内に更新されたファイルを検索</td></tr>
+              <tr><td class="cmd"><code>touch file</code></td><td>空ファイルを作成/タイムスタンプを更新</td></tr>
+              <tr><td class="cmd"><code>tree -L 2</code></td><td>ディレクトリ構造を2階層まで表示</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>ファイル閲覧</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>cat file</code></td><td>ファイル内容を全て表示</td></tr>
+              <tr><td class="cmd"><code>less file</code></td><td>ファイルをページ単位で閲覧</td></tr>
+              <tr><td class="cmd"><code>head -n 20 file</code></td><td>先頭20行を表示</td></tr>
+              <tr><td class="cmd"><code>tail -n 20 file</code></td><td>末尾20行を表示</td></tr>
+              <tr><td class="cmd"><code>tail -f file</code></td><td>ファイル末尾をリアルタイムに追跡</td></tr>
+              <tr><td class="cmd"><code>wc -l file</code></td><td>行数をカウント</td></tr>
+              <tr><td class="cmd"><code>diff file1 file2</code></td><td>2ファイルの差分を表示</td></tr>
+              <tr><td class="cmd"><code>file filename</code></td><td>ファイルの種類を判定</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>テキスト処理</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>grep -r "pattern" dir</code></td><td>ディレクトリ内を再帰的にパターン検索</td></tr>
+              <tr><td class="cmd"><code>grep -i "pattern" file</code></td><td>大文字小文字を無視して検索</td></tr>
+              <tr><td class="cmd"><code>grep -n "pattern" file</code></td><td>行番号付きで検索結果を表示</td></tr>
+              <tr><td class="cmd"><code>sed 's/old/new/g' file</code></td><td>文字列を一括置換</td></tr>
+              <tr><td class="cmd"><code>sed -i 's/old/new/g' file</code></td><td>ファイルを直接書き換え(in-place)</td></tr>
+              <tr><td class="cmd"><code>awk '{print $1}' file</code></td><td>各行の第1フィールドを出力</td></tr>
+              <tr><td class="cmd"><code>sort file</code></td><td>行をソート</td></tr>
+              <tr><td class="cmd"><code>sort -u file</code></td><td>ソートして重複を除去</td></tr>
+              <tr><td class="cmd"><code>uniq</code></td><td>連続する重複行を除去</td></tr>
+              <tr><td class="cmd"><code>cut -d',' -f1 file</code></td><td>デリミタで区切って第1フィールドを抽出</td></tr>
+              <tr><td class="cmd"><code>tr 'a-z' 'A-Z'</code></td><td>小文字を大文字に変換</td></tr>
+              <tr><td class="cmd"><code>xargs cmd</code></td><td>標準入力からコマンドの引数を構築</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>パイプ・リダイレクト</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>cmd1 | cmd2</code></td><td>cmd1の出力をcmd2の入力に渡す</td></tr>
+              <tr><td class="cmd"><code>cmd &gt; file</code></td><td>標準出力をファイルに書き込み(上書き)</td></tr>
+              <tr><td class="cmd"><code>cmd &gt;&gt; file</code></td><td>標準出力をファイルに追記</td></tr>
+              <tr><td class="cmd"><code>cmd &lt; file</code></td><td>ファイルを標準入力として渡す</td></tr>
+              <tr><td class="cmd"><code>cmd 2&gt; file</code></td><td>標準エラー出力をファイルにリダイレクト</td></tr>
+              <tr><td class="cmd"><code>cmd 2&gt;&amp;1</code></td><td>標準エラーを標準出力にマージ</td></tr>
+              <tr><td class="cmd"><code>cmd | tee file</code></td><td>出力を画面とファイルの両方に出力</td></tr>
+              <tr><td class="cmd"><code>cmd1 &amp;&amp; cmd2</code></td><td>cmd1成功時のみcmd2を実行</td></tr>
+              <tr><td class="cmd"><code>cmd1 || cmd2</code></td><td>cmd1失敗時のみcmd2を実行</td></tr>
+              <tr><td class="cmd"><code>cmd1 ; cmd2</code></td><td>cmd1の結果に関わらずcmd2を実行</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>シェル操作</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>clear</code></td><td>画面をクリア</td></tr>
+              <tr><td class="cmd"><code>history</code></td><td>コマンド履歴を表示</td></tr>
+              <tr><td class="cmd"><code>!n</code></td><td>履歴のn番目のコマンドを再実行</td></tr>
+              <tr><td class="cmd"><code>!!</code></td><td>直前のコマンドを再実行</td></tr>
+              <tr><td class="cmd"><code>alias ll='ls -la'</code></td><td>コマンドのエイリアスを定義</td></tr>
+              <tr><td class="cmd"><code>unalias ll</code></td><td>エイリアスを削除</td></tr>
+              <tr><td class="cmd"><code>echo $VAR</code></td><td>変数の値を表示</td></tr>
+              <tr><td class="cmd"><code>export VAR=value</code></td><td>環境変数を設定</td></tr>
+              <tr><td class="cmd"><code>source ~/.bashrc</code></td><td>設定ファイルを現在のシェルに読み込み</td></tr>
+              <tr><td class="cmd"><code>type cmd</code></td><td>コマンドの種類を表示(alias/builtin/file)</td></tr>
+              <tr><td class="cmd"><code>exit</code></td><td>シェルを終了</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>キーボードショートカット</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>Ctrl+C</code></td><td>実行中のコマンドを中断</td></tr>
+              <tr><td class="cmd"><code>Ctrl+Z</code></td><td>コマンドを一時停止</td></tr>
+              <tr><td class="cmd"><code>Ctrl+D</code></td><td>EOFを送信 / シェルを終了</td></tr>
+              <tr><td class="cmd"><code>Ctrl+L</code></td><td>画面をクリア(clearと同等)</td></tr>
+              <tr><td class="cmd"><code>Ctrl+R</code></td><td>コマンド履歴をインクリメンタル検索</td></tr>
+              <tr><td class="cmd"><code>Ctrl+A</code></td><td>カーソルを行頭に移動</td></tr>
+              <tr><td class="cmd"><code>Ctrl+E</code></td><td>カーソルを行末に移動</td></tr>
+              <tr><td class="cmd"><code>Ctrl+W</code></td><td>カーソル前の単語を削除</td></tr>
+              <tr><td class="cmd"><code>Ctrl+U</code></td><td>カーソルから行頭まで削除</td></tr>
+              <tr><td class="cmd"><code>Ctrl+K</code></td><td>カーソルから行末まで削除</td></tr>
+              <tr><td class="cmd"><code>Tab</code></td><td>コマンドやパスを自動補完</td></tr>
+              <tr><td class="cmd"><code>Tab Tab</code></td><td>補完候補を一覧表示</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==================== GIT ==================== -->
+    <section role="tabpanel" id="panel-git" aria-labelledby="tab-git" hidden>
+      <div class="categories-grid">
+
+        <article class="category quick-ref">
+          <h2>よく使うコマンド — 基本 + Worktree並列開発</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>git status</code></td><td>ワーキングツリーの状態を表示</td></tr>
+              <tr><td class="cmd"><code>git add -A</code></td><td>全変更をステージングに追加</td></tr>
+              <tr><td class="cmd"><code>git commit -m "msg"</code></td><td>ステージした変更をコミット</td></tr>
+              <tr><td class="cmd"><code>git push origin branch</code></td><td>ブランチをリモートにプッシュ</td></tr>
+              <tr><td class="cmd"><code>git pull</code></td><td>リモートの変更を取得してマージ</td></tr>
+              <tr><td class="cmd"><code>git switch -c name</code></td><td>新ブランチを作成して切り替え</td></tr>
+              <tr><td class="cmd"><code>git log --oneline --all --graph</code></td><td>全ブランチの履歴をグラフ表示</td></tr>
+              <tr><td class="cmd"><code>git diff</code></td><td>ステージ前の変更を表示</td></tr>
+              <tr><td class="cmd"><code>git stash</code></td><td>作業中の変更を一時退避</td></tr>
+              <tr><td class="cmd"><code>git merge feat</code></td><td>完了ブランチをマージ</td></tr>
+              <tr><td class="cmd"><code>git worktree add ../feat -b feat</code></td><td>新ブランチ+ワークツリーを作成</td></tr>
+              <tr><td class="cmd"><code>git worktree list</code></td><td>全ワークツリーを一覧表示</td></tr>
+              <tr><td class="cmd"><code>git worktree remove ../feat</code></td><td>完了したワークツリーを削除</td></tr>
+              <tr><td class="cmd"><code>git diff main..feat</code></td><td>mainとの差分を確認</td></tr>
+              <tr><td class="cmd"><code>git branch -d feat</code></td><td>マージ済みブランチを削除</td></tr>
+              <tr><td class="cmd"><code>git push --force-with-lease</code></td><td>安全にフォースプッシュ</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>初期設定</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>git init</code></td><td>新しいリポジトリを初期化</td></tr>
+              <tr><td class="cmd"><code>git clone url</code></td><td>リモートリポジトリをクローン</td></tr>
+              <tr><td class="cmd"><code>git clone --depth 1 url</code></td><td>最新コミットのみのシャロークローン</td></tr>
+              <tr><td class="cmd"><code>git config --global user.name "name"</code></td><td>グローバルユーザー名を設定</td></tr>
+              <tr><td class="cmd"><code>git config --global user.email "email"</code></td><td>グローバルメールアドレスを設定</td></tr>
+              <tr><td class="cmd"><code>git config --list</code></td><td>設定を一覧表示</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>基本操作</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>git status</code></td><td>ワーキングツリーの状態を表示</td></tr>
+              <tr><td class="cmd"><code>git add file</code></td><td>ファイルをステージングエリアに追加</td></tr>
+              <tr><td class="cmd"><code>git add -A</code></td><td>全変更をステージングエリアに追加</td></tr>
+              <tr><td class="cmd"><code>git add -p</code></td><td>変更をハンク単位で対話的にステージング</td></tr>
+              <tr><td class="cmd"><code>git commit -m "msg"</code></td><td>ステージした変更をコミット</td></tr>
+              <tr><td class="cmd"><code>git commit --amend</code></td><td>直前のコミットを修正</td></tr>
+              <tr><td class="cmd"><code>git diff</code></td><td>ステージ前の変更を表示</td></tr>
+              <tr><td class="cmd"><code>git diff --staged</code></td><td>ステージ済みの変更を表示</td></tr>
+              <tr><td class="cmd"><code>git diff HEAD~1</code></td><td>直前のコミットとの差分を表示</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>ブランチ操作</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>git branch</code></td><td>ローカルブランチの一覧を表示</td></tr>
+              <tr><td class="cmd"><code>git branch -a</code></td><td>リモート含む全ブランチを表示</td></tr>
+              <tr><td class="cmd"><code>git branch name</code></td><td>新しいブランチを作成</td></tr>
+              <tr><td class="cmd"><code>git branch -d name</code></td><td>マージ済みブランチを削除</td></tr>
+              <tr><td class="cmd"><code>git branch -D name</code></td><td>ブランチを強制削除</td></tr>
+              <tr><td class="cmd"><code>git switch name</code></td><td>ブランチを切り替え</td></tr>
+              <tr><td class="cmd"><code>git switch -c name</code></td><td>新ブランチを作成して切り替え</td></tr>
+              <tr><td class="cmd"><code>git merge name</code></td><td>指定ブランチを現在のブランチにマージ</td></tr>
+              <tr><td class="cmd"><code>git merge --abort</code></td><td>マージを中断して元の状態に戻す</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>リモート操作</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>git remote -v</code></td><td>リモートリポジトリの一覧を表示</td></tr>
+              <tr><td class="cmd"><code>git remote add name url</code></td><td>リモートリポジトリを追加</td></tr>
+              <tr><td class="cmd"><code>git fetch origin</code></td><td>リモートの変更を取得(マージなし)</td></tr>
+              <tr><td class="cmd"><code>git pull</code></td><td>リモートの変更を取得してマージ</td></tr>
+              <tr><td class="cmd"><code>git pull --rebase</code></td><td>リモートの変更を取得してリベース</td></tr>
+              <tr><td class="cmd"><code>git push origin branch</code></td><td>ブランチをリモートにプッシュ</td></tr>
+              <tr><td class="cmd"><code>git push -u origin branch</code></td><td>上流ブランチを設定してプッシュ</td></tr>
+              <tr><td class="cmd"><code>git push --force-with-lease</code></td><td>安全にフォースプッシュ</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>一時退避</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>git stash</code></td><td>作業中の変更を一時退避</td></tr>
+              <tr><td class="cmd"><code>git stash -u</code></td><td>未追跡ファイルも含めて退避</td></tr>
+              <tr><td class="cmd"><code>git stash push -m "msg"</code></td><td>メッセージ付きで退避</td></tr>
+              <tr><td class="cmd"><code>git stash pop</code></td><td>最新のスタッシュを復元して削除</td></tr>
+              <tr><td class="cmd"><code>git stash apply</code></td><td>最新のスタッシュを復元(削除しない)</td></tr>
+              <tr><td class="cmd"><code>git stash list</code></td><td>スタッシュの一覧を表示</td></tr>
+              <tr><td class="cmd"><code>git stash drop</code></td><td>最新のスタッシュを削除</td></tr>
+              <tr><td class="cmd"><code>git stash clear</code></td><td>全スタッシュを削除</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>履歴・差分</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>git log</code></td><td>コミット履歴を表示</td></tr>
+              <tr><td class="cmd"><code>git log --oneline</code></td><td>コミット履歴を1行ずつ表示</td></tr>
+              <tr><td class="cmd"><code>git log --oneline --graph</code></td><td>ブランチグラフ付きで履歴表示</td></tr>
+              <tr><td class="cmd"><code>git log -p file</code></td><td>ファイルの変更履歴をdiff付きで表示</td></tr>
+              <tr><td class="cmd"><code>git log --author="name"</code></td><td>特定の作者のコミットのみ表示</td></tr>
+              <tr><td class="cmd"><code>git blame file</code></td><td>各行の最終変更者とコミットを表示</td></tr>
+              <tr><td class="cmd"><code>git show commit</code></td><td>コミットの詳細と差分を表示</td></tr>
+              <tr><td class="cmd"><code>git shortlog -sn</code></td><td>作者別のコミット数を表示</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>変更の取り消し</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>git restore file</code></td><td>ワーキングツリーの変更を取り消し</td></tr>
+              <tr><td class="cmd"><code>git restore --staged file</code></td><td>ステージングを取り消し</td></tr>
+              <tr><td class="cmd"><code>git reset HEAD~1</code></td><td>直前のコミットを取り消し(変更は保持)</td></tr>
+              <tr><td class="cmd"><code>git reset --hard HEAD~1</code></td><td>直前のコミットと変更を完全に取り消し</td></tr>
+              <tr><td class="cmd"><code>git revert commit</code></td><td>コミットを打ち消す新しいコミットを作成</td></tr>
+              <tr><td class="cmd"><code>git clean -fd</code></td><td>未追跡のファイルとディレクトリを削除</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>ワークツリー</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>git worktree add path branch</code></td><td>ブランチの作業ツリーを別パスに作成</td></tr>
+              <tr><td class="cmd"><code>git worktree add -b new path</code></td><td>新ブランチ作成と同時にワークツリー追加</td></tr>
+              <tr><td class="cmd"><code>git worktree list</code></td><td>全ワークツリーを一覧表示</td></tr>
+              <tr><td class="cmd"><code>git worktree remove path</code></td><td>ワークツリーを削除</td></tr>
+              <tr><td class="cmd"><code>git worktree prune</code></td><td>不要なワークツリー情報をクリーンアップ</td></tr>
+              <tr><td class="cmd"><code>git worktree move old new</code></td><td>ワークツリーを別のパスに移動</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>応用操作</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>git rebase branch</code></td><td>現在のブランチを指定ブランチ上にリベース</td></tr>
+              <tr><td class="cmd"><code>git rebase --abort</code></td><td>リベースを中断して元に戻す</td></tr>
+              <tr><td class="cmd"><code>git rebase --continue</code></td><td>コンフリクト解決後にリベースを続行</td></tr>
+              <tr><td class="cmd"><code>git cherry-pick commit</code></td><td>特定のコミットを現在のブランチに適用</td></tr>
+              <tr><td class="cmd"><code>git bisect start</code></td><td>二分探索でバグ導入コミットを特定開始</td></tr>
+              <tr><td class="cmd"><code>git reflog</code></td><td>HEADの移動履歴を表示(復旧に便利)</td></tr>
+              <tr><td class="cmd"><code>git tag v1.0</code></td><td>軽量タグを作成</td></tr>
+              <tr><td class="cmd"><code>git tag -a v1.0 -m "msg"</code></td><td>注釈付きタグを作成</td></tr>
+              <tr><td class="cmd"><code>git submodule add url</code></td><td>サブモジュールを追加</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==================== サーバー操作 ==================== -->
+    <section role="tabpanel" id="panel-server" aria-labelledby="tab-server" hidden>
+      <div class="categories-grid">
+
+        <article class="category quick-ref">
+          <h2>よく使うコマンド</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>ssh user@host</code></td><td>リモートホストにSSH接続</td></tr>
+              <tr><td class="cmd"><code>scp file user@host:path</code></td><td>SSH経由でファイルを転送</td></tr>
+              <tr><td class="cmd"><code>chmod 755 file</code></td><td>所有者rwx、グループ・他rx権限を設定</td></tr>
+              <tr><td class="cmd"><code>ps aux</code></td><td>全プロセスを詳細表示</td></tr>
+              <tr><td class="cmd"><code>kill -9 PID</code></td><td>プロセスを強制終了(SIGKILL)</td></tr>
+              <tr><td class="cmd"><code>curl -O url</code></td><td>URLからファイルをダウンロード</td></tr>
+              <tr><td class="cmd"><code>df -h</code></td><td>ディスク使用量を人間が読める形式で表示</td></tr>
+              <tr><td class="cmd"><code>tar czf archive.tar.gz dir</code></td><td>gzip圧縮のtarアーカイブを作成</td></tr>
+              <tr><td class="cmd"><code>ping host</code></td><td>ホストへの接続を確認</td></tr>
+              <tr><td class="cmd"><code>ss -tlnp</code></td><td>リスニング中のTCPポートを表示</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>権限管理</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>chmod 755 file</code></td><td>所有者rwx、グループ・他rx権限を設定</td></tr>
+              <tr><td class="cmd"><code>chmod +x file</code></td><td>実行権限を追加</td></tr>
+              <tr><td class="cmd"><code>chmod -R 644 dir</code></td><td>ディレクトリ内を再帰的に権限変更</td></tr>
+              <tr><td class="cmd"><code>chown user:group file</code></td><td>所有者とグループを変更</td></tr>
+              <tr><td class="cmd"><code>chgrp group file</code></td><td>グループを変更</td></tr>
+              <tr><td class="cmd"><code>umask 022</code></td><td>デフォルトの権限マスクを設定</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>プロセス管理</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>ps aux</code></td><td>全プロセスを詳細表示</td></tr>
+              <tr><td class="cmd"><code>ps aux | grep name</code></td><td>プロセス名でフィルタ</td></tr>
+              <tr><td class="cmd"><code>top</code></td><td>プロセスをリアルタイム監視</td></tr>
+              <tr><td class="cmd"><code>htop</code></td><td>プロセスを対話的に監視(要インストール)</td></tr>
+              <tr><td class="cmd"><code>kill PID</code></td><td>プロセスにSIGTERMを送信</td></tr>
+              <tr><td class="cmd"><code>kill -9 PID</code></td><td>プロセスを強制終了(SIGKILL)</td></tr>
+              <tr><td class="cmd"><code>bg</code></td><td>停止中のジョブをバックグラウンドで再開</td></tr>
+              <tr><td class="cmd"><code>fg</code></td><td>バックグラウンドジョブをフォアグラウンドに</td></tr>
+              <tr><td class="cmd"><code>jobs</code></td><td>現在のジョブ一覧を表示</td></tr>
+              <tr><td class="cmd"><code>nohup cmd &amp;</code></td><td>ログアウト後も継続するバックグラウンド実行</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>ネットワーク</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>curl -O url</code></td><td>URLからファイルをダウンロード</td></tr>
+              <tr><td class="cmd"><code>curl -X POST -d data url</code></td><td>POSTリクエストを送信</td></tr>
+              <tr><td class="cmd"><code>wget url</code></td><td>URLからファイルをダウンロード</td></tr>
+              <tr><td class="cmd"><code>ssh user@host</code></td><td>リモートホストにSSH接続</td></tr>
+              <tr><td class="cmd"><code>scp file user@host:path</code></td><td>SSH経由でファイルを転送</td></tr>
+              <tr><td class="cmd"><code>rsync -avz src dst</code></td><td>差分のみを効率的に同期</td></tr>
+              <tr><td class="cmd"><code>ping host</code></td><td>ホストへの接続を確認</td></tr>
+              <tr><td class="cmd"><code>ss -tlnp</code></td><td>リスニング中のTCPポートを表示</td></tr>
+              <tr><td class="cmd"><code>dig domain</code></td><td>DNSレコードを照会</td></tr>
+              <tr><td class="cmd"><code>nc -zv host port</code></td><td>ポートの疎通を確認</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>システム情報</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>uname -a</code></td><td>システム情報を全て表示</td></tr>
+              <tr><td class="cmd"><code>df -h</code></td><td>ディスク使用量を人間が読める形式で表示</td></tr>
+              <tr><td class="cmd"><code>du -sh dir</code></td><td>ディレクトリの合計サイズを表示</td></tr>
+              <tr><td class="cmd"><code>free -h</code></td><td>メモリ使用量を表示</td></tr>
+              <tr><td class="cmd"><code>uptime</code></td><td>システムの稼働時間を表示</td></tr>
+              <tr><td class="cmd"><code>whoami</code></td><td>現在のユーザー名を表示</td></tr>
+              <tr><td class="cmd"><code>hostname</code></td><td>ホスト名を表示</td></tr>
+              <tr><td class="cmd"><code>env</code></td><td>環境変数を一覧表示</td></tr>
+              <tr><td class="cmd"><code>which cmd</code></td><td>コマンドのパスを表示</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>圧縮・展開</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>tar czf archive.tar.gz dir</code></td><td>gzip圧縮のtarアーカイブを作成</td></tr>
+              <tr><td class="cmd"><code>tar xzf archive.tar.gz</code></td><td>gzip圧縮のtarアーカイブを展開</td></tr>
+              <tr><td class="cmd"><code>tar tf archive.tar.gz</code></td><td>アーカイブの中身を一覧表示</td></tr>
+              <tr><td class="cmd"><code>gzip file</code></td><td>ファイルをgzip圧縮</td></tr>
+              <tr><td class="cmd"><code>gunzip file.gz</code></td><td>gzipファイルを展開</td></tr>
+              <tr><td class="cmd"><code>zip -r archive.zip dir</code></td><td>ディレクトリをzip圧縮</td></tr>
+              <tr><td class="cmd"><code>unzip archive.zip</code></td><td>zipファイルを展開</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==================== DOCKER ==================== -->
+    <section role="tabpanel" id="panel-docker" aria-labelledby="tab-docker" hidden>
+      <div class="categories-grid">
+
+        <article class="category quick-ref">
+          <h2>よく使うコマンド</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>docker run -d image</code></td><td>バックグラウンドでコンテナを起動</td></tr>
+              <tr><td class="cmd"><code>docker ps</code></td><td>実行中のコンテナを一覧表示</td></tr>
+              <tr><td class="cmd"><code>docker stop name</code></td><td>コンテナを停止</td></tr>
+              <tr><td class="cmd"><code>docker logs -f name</code></td><td>ログをリアルタイムに追跡</td></tr>
+              <tr><td class="cmd"><code>docker exec -it name sh</code></td><td>実行中コンテナでシェルを開く</td></tr>
+              <tr><td class="cmd"><code>docker build -t name .</code></td><td>Dockerfileからイメージをビルド</td></tr>
+              <tr><td class="cmd"><code>docker compose up -d</code></td><td>バックグラウンドでサービスを起動</td></tr>
+              <tr><td class="cmd"><code>docker compose down</code></td><td>サービスを停止してコンテナを削除</td></tr>
+              <tr><td class="cmd"><code>docker images</code></td><td>ローカルイメージの一覧を表示</td></tr>
+              <tr><td class="cmd"><code>docker system prune</code></td><td>未使用リソースを一括削除</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>コンテナ操作</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>docker run image</code></td><td>イメージからコンテナを起動</td></tr>
+              <tr><td class="cmd"><code>docker run -d image</code></td><td>バックグラウンドでコンテナを起動</td></tr>
+              <tr><td class="cmd"><code>docker run -it image sh</code></td><td>対話シェル付きでコンテナを起動</td></tr>
+              <tr><td class="cmd"><code>docker run -p 8080:80 image</code></td><td>ポートマッピング付きで起動</td></tr>
+              <tr><td class="cmd"><code>docker run -v /host:/cont image</code></td><td>ボリュームをマウントして起動</td></tr>
+              <tr><td class="cmd"><code>docker run --rm image</code></td><td>終了時にコンテナを自動削除</td></tr>
+              <tr><td class="cmd"><code>docker run --name myapp image</code></td><td>名前付きでコンテナを起動</td></tr>
+              <tr><td class="cmd"><code>docker run -e KEY=VAL image</code></td><td>環境変数を設定して起動</td></tr>
+              <tr><td class="cmd"><code>docker ps</code></td><td>実行中のコンテナを一覧表示</td></tr>
+              <tr><td class="cmd"><code>docker ps -a</code></td><td>全コンテナを一覧表示(停止中含む)</td></tr>
+              <tr><td class="cmd"><code>docker stop name</code></td><td>コンテナを停止</td></tr>
+              <tr><td class="cmd"><code>docker start name</code></td><td>停止中のコンテナを起動</td></tr>
+              <tr><td class="cmd"><code>docker restart name</code></td><td>コンテナを再起動</td></tr>
+              <tr><td class="cmd"><code>docker rm name</code></td><td>停止中のコンテナを削除</td></tr>
+              <tr><td class="cmd"><code>docker rm -f name</code></td><td>実行中のコンテナを強制削除</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>コンテナ内操作</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>docker exec -it name sh</code></td><td>実行中コンテナでシェルを開く</td></tr>
+              <tr><td class="cmd"><code>docker exec name cmd</code></td><td>実行中コンテナでコマンドを実行</td></tr>
+              <tr><td class="cmd"><code>docker logs name</code></td><td>コンテナのログを表示</td></tr>
+              <tr><td class="cmd"><code>docker logs -f name</code></td><td>ログをリアルタイムに追跡</td></tr>
+              <tr><td class="cmd"><code>docker logs --tail 100 name</code></td><td>最新100行のログを表示</td></tr>
+              <tr><td class="cmd"><code>docker cp name:/path ./local</code></td><td>コンテナからファイルをコピー</td></tr>
+              <tr><td class="cmd"><code>docker cp ./local name:/path</code></td><td>コンテナへファイルをコピー</td></tr>
+              <tr><td class="cmd"><code>docker attach name</code></td><td>実行中コンテナの標準入出力に接続</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>イメージ管理</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>docker build -t name .</code></td><td>Dockerfileからイメージをビルド</td></tr>
+              <tr><td class="cmd"><code>docker build --no-cache -t name .</code></td><td>キャッシュなしでビルド</td></tr>
+              <tr><td class="cmd"><code>docker pull image</code></td><td>レジストリからイメージを取得</td></tr>
+              <tr><td class="cmd"><code>docker push image</code></td><td>レジストリにイメージをプッシュ</td></tr>
+              <tr><td class="cmd"><code>docker images</code></td><td>ローカルイメージの一覧を表示</td></tr>
+              <tr><td class="cmd"><code>docker rmi image</code></td><td>イメージを削除</td></tr>
+              <tr><td class="cmd"><code>docker tag src dst</code></td><td>イメージにタグを付ける</td></tr>
+              <tr><td class="cmd"><code>docker image prune</code></td><td>未使用イメージを削除</td></tr>
+              <tr><td class="cmd"><code>docker save -o file.tar image</code></td><td>イメージをtarファイルに保存</td></tr>
+              <tr><td class="cmd"><code>docker load -i file.tar</code></td><td>tarファイルからイメージを読み込み</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>Docker Compose</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>docker compose up</code></td><td>サービスを起動</td></tr>
+              <tr><td class="cmd"><code>docker compose up -d</code></td><td>バックグラウンドでサービスを起動</td></tr>
+              <tr><td class="cmd"><code>docker compose up --build</code></td><td>イメージを再ビルドして起動</td></tr>
+              <tr><td class="cmd"><code>docker compose down</code></td><td>サービスを停止してコンテナを削除</td></tr>
+              <tr><td class="cmd"><code>docker compose down -v</code></td><td>ボリュームも含めて削除</td></tr>
+              <tr><td class="cmd"><code>docker compose ps</code></td><td>サービスの状態を表示</td></tr>
+              <tr><td class="cmd"><code>docker compose logs -f</code></td><td>全サービスのログをリアルタイム表示</td></tr>
+              <tr><td class="cmd"><code>docker compose exec svc sh</code></td><td>サービスコンテナでシェルを開く</td></tr>
+              <tr><td class="cmd"><code>docker compose build</code></td><td>サービスのイメージをビルド</td></tr>
+              <tr><td class="cmd"><code>docker compose pull</code></td><td>サービスのイメージを取得</td></tr>
+              <tr><td class="cmd"><code>docker compose restart</code></td><td>サービスを再起動</td></tr>
+              <tr><td class="cmd"><code>docker compose config</code></td><td>compose設定を検証して表示</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>ネットワーク・ボリューム</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>docker network ls</code></td><td>ネットワーク一覧を表示</td></tr>
+              <tr><td class="cmd"><code>docker network create name</code></td><td>ネットワークを作成</td></tr>
+              <tr><td class="cmd"><code>docker network rm name</code></td><td>ネットワークを削除</td></tr>
+              <tr><td class="cmd"><code>docker network inspect name</code></td><td>ネットワークの詳細を表示</td></tr>
+              <tr><td class="cmd"><code>docker volume ls</code></td><td>ボリューム一覧を表示</td></tr>
+              <tr><td class="cmd"><code>docker volume create name</code></td><td>ボリュームを作成</td></tr>
+              <tr><td class="cmd"><code>docker volume rm name</code></td><td>ボリュームを削除</td></tr>
+              <tr><td class="cmd"><code>docker volume inspect name</code></td><td>ボリュームの詳細を表示</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>確認・デバッグ</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>docker inspect name</code></td><td>コンテナ/イメージの詳細情報をJSON表示</td></tr>
+              <tr><td class="cmd"><code>docker stats</code></td><td>全コンテナのリソース使用量をリアルタイム表示</td></tr>
+              <tr><td class="cmd"><code>docker top name</code></td><td>コンテナ内のプロセスを表示</td></tr>
+              <tr><td class="cmd"><code>docker diff name</code></td><td>コンテナのファイルシステム変更を表示</td></tr>
+              <tr><td class="cmd"><code>docker history image</code></td><td>イメージのレイヤー履歴を表示</td></tr>
+              <tr><td class="cmd"><code>docker system df</code></td><td>Dockerのディスク使用量を表示</td></tr>
+              <tr><td class="cmd"><code>docker system prune</code></td><td>未使用リソースを一括削除</td></tr>
+              <tr><td class="cmd"><code>docker system prune -a</code></td><td>全未使用イメージも含めて一括削除</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==================== CLAUDE CODE ==================== -->
+    <section role="tabpanel" id="panel-claude" aria-labelledby="tab-claude" hidden>
+      <div class="categories-grid">
+
+        <article class="category quick-ref">
+          <h2>よく使うコマンド</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>/help</code></td><td>使い方のヘルプを表示</td></tr>
+              <tr><td class="cmd"><code>/clear</code></td><td>会話履歴をクリア</td></tr>
+              <tr><td class="cmd"><code>/compact</code></td><td>会話をコンパクトに圧縮</td></tr>
+              <tr><td class="cmd"><code>/model</code></td><td>AIモデルを選択・変更</td></tr>
+              <tr><td class="cmd"><code>/cost</code></td><td>トークン使用量とコストを表示</td></tr>
+              <tr><td class="cmd"><code>/init</code></td><td>プロジェクトのCLAUDE.mdを初期化</td></tr>
+              <tr><td class="cmd"><code>/config</code></td><td>設定画面を開く</td></tr>
+              <tr><td class="cmd"><code>/doctor</code></td><td>インストール状態を診断</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>セッション・ナビゲーション</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>/exit</code></td><td>REPLを終了してセッションを閉じる</td></tr>
+              <tr><td class="cmd"><code>/resume [session]</code></td><td>IDまたは名前で会話を再開</td></tr>
+              <tr><td class="cmd"><code>/rename &lt;name&gt;</code></td><td>現在のセッション名を変更</td></tr>
+              <tr><td class="cmd"><code>/teleport</code></td><td>claude.aiのリモートセッションを再開</td></tr>
+              <tr><td class="cmd"><code>/desktop</code></td><td>セッションをDesktopアプリに引き継ぎ</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>コンテキスト・会話管理</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>/clear</code></td><td>会話履歴をクリア</td></tr>
+              <tr><td class="cmd"><code>/compact [指示]</code></td><td>会話を圧縮（フォーカス指示付き可）</td></tr>
+              <tr><td class="cmd"><code>/rewind</code></td><td>会話やコードを巻き戻し</td></tr>
+              <tr><td class="cmd"><code>/context</code></td><td>コンテキスト使用量を視覚化</td></tr>
+              <tr><td class="cmd"><code>/export [filename]</code></td><td>会話をファイルまたはクリップボードにエクスポート</td></tr>
+              <tr><td class="cmd"><code>/copy</code></td><td>最後のアシスタント応答をクリップボードにコピー</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>設定</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>/config</code></td><td>設定画面を開く（Configタブ）</td></tr>
+              <tr><td class="cmd"><code>/status</code></td><td>バージョン・モデル・アカウント情報を表示</td></tr>
+              <tr><td class="cmd"><code>/permissions</code></td><td>権限設定を表示・更新</td></tr>
+              <tr><td class="cmd"><code>/statusline</code></td><td>ステータスラインUIを設定</td></tr>
+              <tr><td class="cmd"><code>/theme</code></td><td>カラーテーマを変更</td></tr>
+              <tr><td class="cmd"><code>/vim</code></td><td>Vimスタイル編集モードを切替</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>モデル・実行</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>/model</code></td><td>AIモデルを選択・変更（←→でeffort調整）</td></tr>
+              <tr><td class="cmd"><code>/plan</code></td><td>プランモードに入る</td></tr>
+              <tr><td class="cmd"><code>/cost</code></td><td>トークン使用量とコストを表示</td></tr>
+              <tr><td class="cmd"><code>/stats</code></td><td>日次使用量・セッション履歴を視覚化</td></tr>
+              <tr><td class="cmd"><code>/usage</code></td><td>プラン使用量とレートリミットを表示</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>プロジェクト・メモリ</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>/init</code></td><td>CLAUDE.mdガイドでプロジェクトを初期化</td></tr>
+              <tr><td class="cmd"><code>/memory</code></td><td>CLAUDE.mdメモリファイルを編集</td></tr>
+              <tr><td class="cmd"><code>/todos</code></td><td>現在のTODOリストを表示</td></tr>
+              <tr><td class="cmd"><code>/tasks</code></td><td>バックグラウンドタスクを一覧・管理</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>デバッグ・診断</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>/doctor</code></td><td>インストール状態のヘルスチェック</td></tr>
+              <tr><td class="cmd"><code>/debug [説明]</code></td><td>セッションデバッグログでトラブルシュート</td></tr>
+              <tr><td class="cmd"><code>/mcp</code></td><td>MCPサーバー接続を管理</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>入力ショートカット</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Input</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>! cmd</code></td><td>Bashモード — コマンドを直接実行</td></tr>
+              <tr><td class="cmd"><code>@</code></td><td>ファイルパスの自動補完を起動</td></tr>
+              <tr><td class="cmd"><code>/</code></td><td>コマンド・スキル一覧を表示</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==================== CMUX ==================== -->
+    <section role="tabpanel" id="panel-cmux" aria-labelledby="tab-cmux" hidden>
+      <div class="categories-grid">
+
+        <article class="category quick-ref">
+          <h2>よく使うショートカット</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><kbd>⌘ T</kbd></td><td>新しいサーフェス(タブ)を作成</td></tr>
+              <tr><td class="cmd"><kbd>⌘ D</kbd></td><td>右に分割(縦分割)</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ D</kbd></td><td>下に分割(横分割)</td></tr>
+              <tr><td class="cmd"><kbd>⌥ ⌘ ←→</kbd></td><td>隣のペインにフォーカス移動</td></tr>
+              <tr><td class="cmd"><kbd>⌘ W</kbd></td><td>サーフェスを閉じる</td></tr>
+              <tr><td class="cmd"><kbd>⌘ N</kbd></td><td>新しいワークスペースを作成</td></tr>
+              <tr><td class="cmd"><kbd>⌘ K</kbd></td><td>スクロールバックをクリア</td></tr>
+              <tr><td class="cmd"><kbd>⌘ F</kbd></td><td>検索バーを開く</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>ワークスペース</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><kbd>⌘ N</kbd></td><td>新しいワークスペースを作成</td></tr>
+              <tr><td class="cmd"><kbd>⌘ 1</kbd>–<kbd>8</kbd></td><td>ワークスペース1〜8にジャンプ</td></tr>
+              <tr><td class="cmd"><kbd>⌘ 9</kbd></td><td>最後のワークスペースにジャンプ</td></tr>
+              <tr><td class="cmd"><kbd>⌃ ⌘ ]</kbd></td><td>次のワークスペースに移動</td></tr>
+              <tr><td class="cmd"><kbd>⌃ ⌘ [</kbd></td><td>前のワークスペースに移動</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ W</kbd></td><td>ワークスペースを閉じる</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ R</kbd></td><td>ワークスペースをリネーム</td></tr>
+              <tr><td class="cmd"><kbd>⌘ B</kbd></td><td>サイドバーの表示/非表示を切替</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>サーフェス（タブ）</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><kbd>⌘ T</kbd></td><td>新しいサーフェス(タブ)を作成</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ ]</kbd></td><td>次のサーフェスに移動</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ [</kbd></td><td>前のサーフェスに移動</td></tr>
+              <tr><td class="cmd"><kbd>⌃ Tab</kbd></td><td>次のサーフェスに移動</td></tr>
+              <tr><td class="cmd"><kbd>⌃ ⇧ Tab</kbd></td><td>前のサーフェスに移動</td></tr>
+              <tr><td class="cmd"><kbd>⌃ 1</kbd>–<kbd>8</kbd></td><td>サーフェス1〜8にジャンプ</td></tr>
+              <tr><td class="cmd"><kbd>⌃ 9</kbd></td><td>最後のサーフェスにジャンプ</td></tr>
+              <tr><td class="cmd"><kbd>⌘ W</kbd></td><td>サーフェスを閉じる</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>画面分割</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><kbd>⌘ D</kbd></td><td>右に分割(縦分割)</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ D</kbd></td><td>下に分割(横分割)</td></tr>
+              <tr><td class="cmd"><kbd>⌥ ⌘ ←</kbd></td><td>左のペインにフォーカス</td></tr>
+              <tr><td class="cmd"><kbd>⌥ ⌘ →</kbd></td><td>右のペインにフォーカス</td></tr>
+              <tr><td class="cmd"><kbd>⌥ ⌘ ↑</kbd></td><td>上のペインにフォーカス</td></tr>
+              <tr><td class="cmd"><kbd>⌥ ⌘ ↓</kbd></td><td>下のペインにフォーカス</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ H</kbd></td><td>フォーカス中のパネルをフラッシュ表示</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>ブラウザ</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><kbd>⌘ ⇧ L</kbd></td><td>分割でブラウザを開く</td></tr>
+              <tr><td class="cmd"><kbd>⌘ L</kbd></td><td>アドレスバーにフォーカス</td></tr>
+              <tr><td class="cmd"><kbd>⌘ [</kbd></td><td>前のページに戻る</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ]</kbd></td><td>次のページに進む</td></tr>
+              <tr><td class="cmd"><kbd>⌘ R</kbd></td><td>ページをリロード</td></tr>
+              <tr><td class="cmd"><kbd>⌥ ⌘ I</kbd></td><td>デベロッパーツールを切替</td></tr>
+              <tr><td class="cmd"><kbd>⌥ ⌘ C</kbd></td><td>JavaScriptコンソールを表示</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>通知</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><kbd>⌘ I</kbd></td><td>通知パネルを表示</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ U</kbd></td><td>最新の未読通知にジャンプ</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>検索</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><kbd>⌘ F</kbd></td><td>検索バーを開く</td></tr>
+              <tr><td class="cmd"><kbd>⌘ G</kbd></td><td>次の検索結果へ</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ G</kbd></td><td>前の検索結果へ</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ F</kbd></td><td>検索バーを非表示</td></tr>
+              <tr><td class="cmd"><kbd>⌘ E</kbd></td><td>選択テキストを検索に使用</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>ターミナル</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><kbd>⌘ K</kbd></td><td>スクロールバックをクリア</td></tr>
+              <tr><td class="cmd"><kbd>⌘ C</kbd></td><td>コピー(選択時)</td></tr>
+              <tr><td class="cmd"><kbd>⌘ V</kbd></td><td>ペースト</td></tr>
+              <tr><td class="cmd"><kbd>⌘ +</kbd></td><td>フォントサイズを拡大</td></tr>
+              <tr><td class="cmd"><kbd>⌘ -</kbd></td><td>フォントサイズを縮小</td></tr>
+              <tr><td class="cmd"><kbd>⌘ 0</kbd></td><td>フォントサイズをリセット</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>ウィンドウ</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><kbd>⌘ ⇧ N</kbd></td><td>新しいウィンドウを開く</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ,</kbd></td><td>設定を開く</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ ,</kbd></td><td>設定をリロード</td></tr>
+              <tr><td class="cmd"><kbd>⌘ Q</kbd></td><td>アプリケーションを終了</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Command Cheat Sheet — Linux Terminal / Git / Linux Server / Docker / Claude Code / cmux</p>
+  </footer>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const tabs = document.querySelectorAll('[role="tab"]');
+      const panels = document.querySelectorAll('[role="tabpanel"]');
+
+      function activateTab(tab) {
+        tabs.forEach(function(t) {
+          t.setAttribute('aria-selected', 'false');
+          t.setAttribute('tabindex', '-1');
+        });
+        panels.forEach(function(p) {
+          p.hidden = true;
+        });
+
+        tab.setAttribute('aria-selected', 'true');
+        tab.removeAttribute('tabindex');
+        var panelId = tab.getAttribute('aria-controls');
+        document.getElementById(panelId).hidden = false;
+
+        var topic = panelId.replace('panel-', '');
+        history.replaceState(null, '', '#' + topic);
+      }
+
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          activateTab(tab);
+        });
+      });
+
+      tabs.forEach(function(tab, index) {
+        tab.addEventListener('keydown', function(e) {
+          var targetIndex;
+          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            targetIndex = (index + 1) % tabs.length;
+          } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            targetIndex = (index - 1 + tabs.length) % tabs.length;
+          } else if (e.key === 'Home') {
+            targetIndex = 0;
+          } else if (e.key === 'End') {
+            targetIndex = tabs.length - 1;
+          } else {
+            return;
+          }
+          e.preventDefault();
+          tabs[targetIndex].focus();
+          activateTab(tabs[targetIndex]);
+        });
+      });
+
+      var hash = window.location.hash.slice(1);
+      var validTopics = ['terminal', 'git', 'server', 'docker', 'claude', 'cmux'];
+      if (validTopics.indexOf(hash) !== -1) {
+        var tab = document.getElementById('tab-' + hash);
+        if (tab) activateTab(tab);
+      }
+
+      tabs.forEach(function(tab, i) {
+        if (i > 0) tab.setAttribute('tabindex', '-1');
+      });
+    })();
+  </script>
+</body>
+</html>
