@@ -1041,6 +1041,12 @@
               <tr><td class="cmd"><code>/memory</code></td><td>CLAUDE.mdメモリファイルを編集</td></tr>
               <tr><td class="cmd"><code>/todos</code></td><td>現在のTODOリストを表示</td></tr>
               <tr><td class="cmd"><code>/tasks</code></td><td>バックグラウンドタスクを一覧・管理</td></tr>
+              <tr><td class="cmd"><code>CLAUDE.md</code></td><td>プロジェクトメモリ（チーム共有、最優先）</td></tr>
+              <tr><td class="cmd"><code>.claude/rules/*.md</code></td><td>モジュール式ルール（トピック別）</td></tr>
+              <tr><td class="cmd"><code>~/.claude/CLAUDE.md</code></td><td>ユーザーメモリ（全プロジェクト共通）</td></tr>
+              <tr><td class="cmd"><code>CLAUDE.local.md</code></td><td>プロジェクトローカルメモリ（個人用）</td></tr>
+              <tr><td class="cmd"><code>.claude/settings.json</code></td><td>プロジェクト設定（権限・フック等）</td></tr>
+              <tr><td class="cmd"><code>@<var>path/to/file</var></code></td><td>CLAUDE.md内でファイルをインポート</td></tr>
             </tbody>
           </table>
         </article>
@@ -1053,6 +1059,87 @@
               <tr><td class="cmd"><code>/doctor</code></td><td>インストール状態のヘルスチェック</td></tr>
               <tr><td class="cmd"><code>/debug [<var>説明</var>]</code></td><td>セッションデバッグログでトラブルシュート</td></tr>
               <tr><td class="cmd"><code>/mcp</code></td><td>MCPサーバー接続を管理</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>ビルトインツール</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Tool</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>Read</code></td><td>ファイル内容を読み取り（画像・PDF・Notebook対応）</td></tr>
+              <tr><td class="cmd"><code>Write</code></td><td>ファイルを作成・上書き</td></tr>
+              <tr><td class="cmd"><code>Edit</code></td><td>ファイル内の文字列を置換（replace_allで一括も可）</td></tr>
+              <tr><td class="cmd"><code>MultiEdit</code></td><td>複数ファイルを一括編集</td></tr>
+              <tr><td class="cmd"><code>Bash</code></td><td>シェルコマンドを実行（バックグラウンド対応）</td></tr>
+              <tr><td class="cmd"><code>Glob</code></td><td>パターンでファイルを検索（**/*.ts等）</td></tr>
+              <tr><td class="cmd"><code>Grep</code></td><td>ファイル内容を正規表現で検索（ripgrep）</td></tr>
+              <tr><td class="cmd"><code>WebFetch</code></td><td>URLからコンテンツを取得・解析</td></tr>
+              <tr><td class="cmd"><code>WebSearch</code></td><td>Web検索を実行して結果を取得</td></tr>
+              <tr><td class="cmd"><code>Task</code></td><td>サブエージェントにタスクを委譲</td></tr>
+              <tr><td class="cmd"><code>AskUserQuestion</code></td><td>ユーザーに質問して回答を待つ</td></tr>
+              <tr><td class="cmd"><code>TodoWrite</code></td><td>TODOリストを作成・管理</td></tr>
+              <tr><td class="cmd"><code>EnterPlanMode</code></td><td>プランモード（読み取り専用）に切替</td></tr>
+              <tr><td class="cmd"><code>NotebookEdit</code></td><td>Jupyterノートブックのセルを編集</td></tr>
+              <tr><td class="cmd"><code>Skill</code></td><td>カスタムスキル（/コマンド）を呼び出し</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>ツール制御・権限</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Item</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>--tools "<var>Read,Edit,Bash</var>"</code></td><td>使用可能なツールを制限</td></tr>
+              <tr><td class="cmd"><code>--allowedTools "<var>Bash(git *)</var>"</code></td><td>許可なしで実行可能なツールを指定</td></tr>
+              <tr><td class="cmd"><code>--disallowedTools "<var>WebFetch</var>"</code></td><td>完全に無効化するツールを指定</td></tr>
+              <tr><td class="cmd"><code>CLAUDE_CODE_SIMPLE=1</code></td><td>Bash・ファイル読取・編集のみに制限</td></tr>
+              <tr><td class="cmd"><code>"allow": ["<var>Bash(npm *)</var>"]</code></td><td>settings.jsonで自動許可ルールを定義</td></tr>
+              <tr><td class="cmd"><code>"deny": ["<var>Read(.env)</var>"]</code></td><td>settings.jsonで自動拒否ルールを定義</td></tr>
+              <tr><td class="cmd"><code>default</code></td><td>権限モード: 初回使用時に確認</td></tr>
+              <tr><td class="cmd"><code>acceptEdits</code></td><td>権限モード: ファイル編集を自動承認</td></tr>
+              <tr><td class="cmd"><code>plan</code></td><td>権限モード: 読み取り専用（編集・実行不可）</td></tr>
+              <tr><td class="cmd"><code>bypassPermissions</code></td><td>権限モード: 全許可（隔離環境専用）</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>フック</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Event</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>PreToolUse</code></td><td>ツール実行前（ブロック可）</td></tr>
+              <tr><td class="cmd"><code>PostToolUse</code></td><td>ツール実行成功後（フィードバック）</td></tr>
+              <tr><td class="cmd"><code>UserPromptSubmit</code></td><td>プロンプト送信時（ブロック可）</td></tr>
+              <tr><td class="cmd"><code>Stop</code></td><td>応答完了時（ブロック可）</td></tr>
+              <tr><td class="cmd"><code>SubagentStart</code></td><td>サブエージェント起動時</td></tr>
+              <tr><td class="cmd"><code>SubagentStop</code></td><td>サブエージェント終了時（ブロック可）</td></tr>
+              <tr><td class="cmd"><code>SessionStart</code></td><td>セッション開始時</td></tr>
+              <tr><td class="cmd"><code>SessionEnd</code></td><td>セッション終了時</td></tr>
+              <tr><td class="cmd"><code>PreCompact</code></td><td>コンテキスト圧縮前</td></tr>
+              <tr><td class="cmd"><code>command</code></td><td>タイプ: シェルコマンドを実行（stdin: JSON）</td></tr>
+              <tr><td class="cmd"><code>prompt</code></td><td>タイプ: LLM単発評価（ok: true/false）</td></tr>
+              <tr><td class="cmd"><code>agent</code></td><td>タイプ: マルチターンサブエージェント</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>サブエージェント</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Agent</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>Explore</code></td><td>高速な読み取り専用エージェント（Haiku）</td></tr>
+              <tr><td class="cmd"><code>Plan</code></td><td>プラン作成用リサーチエージェント</td></tr>
+              <tr><td class="cmd"><code>general-purpose</code></td><td>全ツール使用可能な汎用エージェント</td></tr>
+              <tr><td class="cmd"><code>Bash</code></td><td>コマンド実行専用エージェント</td></tr>
+              <tr><td class="cmd"><code>.claude/agents/<var>name</var>.md</code></td><td>カスタムエージェントを定義</td></tr>
+              <tr><td class="cmd"><code>claude agents</code></td><td>設定済みサブエージェントを一覧表示</td></tr>
+              <tr><td class="cmd"><code>isolation: worktree</code></td><td>Gitワークツリーで隔離実行</td></tr>
+              <tr><td class="cmd"><code>memory: <var>project</var></code></td><td>クロスセッション学習を有効化</td></tr>
             </tbody>
           </table>
         </article>
