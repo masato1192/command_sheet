@@ -56,6 +56,14 @@
       font-size: 0.9375rem;
     }
 
+    code var {
+      font-style: normal;
+      font-family: inherit;
+      text-decoration: underline;
+      text-decoration-color: #999;
+      text-underline-offset: 3px;
+    }
+
     /* === Header & Tabs === */
     header {
       border-bottom: 3px solid #000;
@@ -307,6 +315,7 @@
       <button role="tab" aria-selected="false" aria-controls="panel-server" id="tab-server">サーバー操作</button>
       <button role="tab" aria-selected="false" aria-controls="panel-docker" id="tab-docker">Docker</button>
       <button role="tab" aria-selected="false" aria-controls="panel-claude" id="tab-claude">Claude Code</button>
+      <button role="tab" aria-selected="false" aria-controls="panel-codex" id="tab-codex">Codex</button>
       <button role="tab" aria-selected="false" aria-controls="panel-cmux" id="tab-cmux">cmux</button>
     </nav>
   </header>
@@ -322,14 +331,14 @@
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
               <tr><td class="cmd"><code>ls -la</code></td><td>隠しファイル含む全ファイルを詳細表示</td></tr>
-              <tr><td class="cmd"><code>cd dir</code></td><td>ディレクトリを移動</td></tr>
-              <tr><td class="cmd"><code>mkdir -p a/b/c</code></td><td>中間ディレクトリも含めて作成</td></tr>
-              <tr><td class="cmd"><code>cp -r src dst</code></td><td>ディレクトリを再帰的にコピー</td></tr>
-              <tr><td class="cmd"><code>mv src dst</code></td><td>ファイル/ディレクトリを移動・リネーム</td></tr>
-              <tr><td class="cmd"><code>rm -rf dir</code></td><td>ディレクトリを強制的に再帰削除</td></tr>
-              <tr><td class="cmd"><code>cat file</code></td><td>ファイル内容を全て表示</td></tr>
-              <tr><td class="cmd"><code>grep -r "pattern" dir</code></td><td>ディレクトリ内を再帰的にパターン検索</td></tr>
-              <tr><td class="cmd"><code>find . -name "*.txt"</code></td><td>ファイル名でファイルを検索</td></tr>
+              <tr><td class="cmd"><code>cd <var>dir</var></code></td><td>ディレクトリを移動</td></tr>
+              <tr><td class="cmd"><code>mkdir -p <var>a/b/c</var></code></td><td>中間ディレクトリも含めて作成</td></tr>
+              <tr><td class="cmd"><code>cp -r <var>src</var> <var>dst</var></code></td><td>ディレクトリを再帰的にコピー</td></tr>
+              <tr><td class="cmd"><code>mv <var>src</var> <var>dst</var></code></td><td>ファイル/ディレクトリを移動・リネーム</td></tr>
+              <tr><td class="cmd"><code>rm -rf <var>dir</var></code></td><td>ディレクトリを強制的に再帰削除</td></tr>
+              <tr><td class="cmd"><code>cat <var>file</var></code></td><td>ファイル内容を全て表示</td></tr>
+              <tr><td class="cmd"><code>grep -r "<var>pattern</var>" <var>dir</var></code></td><td>ディレクトリ内を再帰的にパターン検索</td></tr>
+              <tr><td class="cmd"><code>find . -name "<var>*.txt</var>"</code></td><td>ファイル名でファイルを検索</td></tr>
               <tr><td class="cmd"><code>clear</code></td><td>画面をクリア</td></tr>
               <tr><td class="cmd"><code>Ctrl+C</code></td><td>実行中のコマンドを中断</td></tr>
               <tr><td class="cmd"><code>Ctrl+R</code></td><td>コマンド履歴をインクリメンタル検索</td></tr>
@@ -344,17 +353,17 @@
             <tbody>
               <tr><td class="cmd"><code>pwd</code></td><td>カレントディレクトリを表示</td></tr>
               <tr><td class="cmd"><code>ls -la</code></td><td>隠しファイル含む全ファイルを詳細表示</td></tr>
-              <tr><td class="cmd"><code>cd dir</code></td><td>ディレクトリを移動</td></tr>
+              <tr><td class="cmd"><code>cd <var>dir</var></code></td><td>ディレクトリを移動</td></tr>
               <tr><td class="cmd"><code>cd -</code></td><td>直前のディレクトリに戻る</td></tr>
-              <tr><td class="cmd"><code>mkdir -p a/b/c</code></td><td>中間ディレクトリも含めて作成</td></tr>
-              <tr><td class="cmd"><code>cp -r src dst</code></td><td>ディレクトリを再帰的にコピー</td></tr>
-              <tr><td class="cmd"><code>mv src dst</code></td><td>ファイル/ディレクトリを移動・リネーム</td></tr>
-              <tr><td class="cmd"><code>rm -rf dir</code></td><td>ディレクトリを強制的に再帰削除</td></tr>
-              <tr><td class="cmd"><code>ln -s target link</code></td><td>シンボリックリンクを作成</td></tr>
-              <tr><td class="cmd"><code>find . -name "*.txt"</code></td><td>ファイル名でファイルを検索</td></tr>
-              <tr><td class="cmd"><code>find . -type f -mtime -7</code></td><td>7日以内に更新されたファイルを検索</td></tr>
-              <tr><td class="cmd"><code>touch file</code></td><td>空ファイルを作成/タイムスタンプを更新</td></tr>
-              <tr><td class="cmd"><code>tree -L 2</code></td><td>ディレクトリ構造を2階層まで表示</td></tr>
+              <tr><td class="cmd"><code>mkdir -p <var>a/b/c</var></code></td><td>中間ディレクトリも含めて作成</td></tr>
+              <tr><td class="cmd"><code>cp -r <var>src</var> <var>dst</var></code></td><td>ディレクトリを再帰的にコピー</td></tr>
+              <tr><td class="cmd"><code>mv <var>src</var> <var>dst</var></code></td><td>ファイル/ディレクトリを移動・リネーム</td></tr>
+              <tr><td class="cmd"><code>rm -rf <var>dir</var></code></td><td>ディレクトリを強制的に再帰削除</td></tr>
+              <tr><td class="cmd"><code>ln -s <var>target</var> <var>link</var></code></td><td>シンボリックリンクを作成</td></tr>
+              <tr><td class="cmd"><code>find . -name "<var>*.txt</var>"</code></td><td>ファイル名でファイルを検索</td></tr>
+              <tr><td class="cmd"><code>find . -type f -mtime <var>-7</var></code></td><td>7日以内に更新されたファイルを検索</td></tr>
+              <tr><td class="cmd"><code>touch <var>file</var></code></td><td>空ファイルを作成/タイムスタンプを更新</td></tr>
+              <tr><td class="cmd"><code>tree -L <var>2</var></code></td><td>ディレクトリ構造を2階層まで表示</td></tr>
             </tbody>
           </table>
         </article>
@@ -364,14 +373,14 @@
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>cat file</code></td><td>ファイル内容を全て表示</td></tr>
-              <tr><td class="cmd"><code>less file</code></td><td>ファイルをページ単位で閲覧</td></tr>
-              <tr><td class="cmd"><code>head -n 20 file</code></td><td>先頭20行を表示</td></tr>
-              <tr><td class="cmd"><code>tail -n 20 file</code></td><td>末尾20行を表示</td></tr>
-              <tr><td class="cmd"><code>tail -f file</code></td><td>ファイル末尾をリアルタイムに追跡</td></tr>
-              <tr><td class="cmd"><code>wc -l file</code></td><td>行数をカウント</td></tr>
-              <tr><td class="cmd"><code>diff file1 file2</code></td><td>2ファイルの差分を表示</td></tr>
-              <tr><td class="cmd"><code>file filename</code></td><td>ファイルの種類を判定</td></tr>
+              <tr><td class="cmd"><code>cat <var>file</var></code></td><td>ファイル内容を全て表示</td></tr>
+              <tr><td class="cmd"><code>less <var>file</var></code></td><td>ファイルをページ単位で閲覧</td></tr>
+              <tr><td class="cmd"><code>head -n <var>20</var> <var>file</var></code></td><td>先頭20行を表示</td></tr>
+              <tr><td class="cmd"><code>tail -n <var>20</var> <var>file</var></code></td><td>末尾20行を表示</td></tr>
+              <tr><td class="cmd"><code>tail -f <var>file</var></code></td><td>ファイル末尾をリアルタイムに追跡</td></tr>
+              <tr><td class="cmd"><code>wc -l <var>file</var></code></td><td>行数をカウント</td></tr>
+              <tr><td class="cmd"><code>diff <var>file1</var> <var>file2</var></code></td><td>2ファイルの差分を表示</td></tr>
+              <tr><td class="cmd"><code>file <var>filename</var></code></td><td>ファイルの種類を判定</td></tr>
             </tbody>
           </table>
         </article>
@@ -381,18 +390,18 @@
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>grep -r "pattern" dir</code></td><td>ディレクトリ内を再帰的にパターン検索</td></tr>
-              <tr><td class="cmd"><code>grep -i "pattern" file</code></td><td>大文字小文字を無視して検索</td></tr>
-              <tr><td class="cmd"><code>grep -n "pattern" file</code></td><td>行番号付きで検索結果を表示</td></tr>
-              <tr><td class="cmd"><code>sed 's/old/new/g' file</code></td><td>文字列を一括置換</td></tr>
-              <tr><td class="cmd"><code>sed -i 's/old/new/g' file</code></td><td>ファイルを直接書き換え(in-place)</td></tr>
-              <tr><td class="cmd"><code>awk '{print $1}' file</code></td><td>各行の第1フィールドを出力</td></tr>
-              <tr><td class="cmd"><code>sort file</code></td><td>行をソート</td></tr>
-              <tr><td class="cmd"><code>sort -u file</code></td><td>ソートして重複を除去</td></tr>
+              <tr><td class="cmd"><code>grep -r "<var>pattern</var>" <var>dir</var></code></td><td>ディレクトリ内を再帰的にパターン検索</td></tr>
+              <tr><td class="cmd"><code>grep -i "<var>pattern</var>" <var>file</var></code></td><td>大文字小文字を無視して検索</td></tr>
+              <tr><td class="cmd"><code>grep -n "<var>pattern</var>" <var>file</var></code></td><td>行番号付きで検索結果を表示</td></tr>
+              <tr><td class="cmd"><code>sed 's/<var>old</var>/<var>new</var>/g' <var>file</var></code></td><td>文字列を一括置換</td></tr>
+              <tr><td class="cmd"><code>sed -i 's/<var>old</var>/<var>new</var>/g' <var>file</var></code></td><td>ファイルを直接書き換え(in-place)</td></tr>
+              <tr><td class="cmd"><code>awk '{print $1}' <var>file</var></code></td><td>各行の第1フィールドを出力</td></tr>
+              <tr><td class="cmd"><code>sort <var>file</var></code></td><td>行をソート</td></tr>
+              <tr><td class="cmd"><code>sort -u <var>file</var></code></td><td>ソートして重複を除去</td></tr>
               <tr><td class="cmd"><code>uniq</code></td><td>連続する重複行を除去</td></tr>
-              <tr><td class="cmd"><code>cut -d',' -f1 file</code></td><td>デリミタで区切って第1フィールドを抽出</td></tr>
+              <tr><td class="cmd"><code>cut -d',' -f1 <var>file</var></code></td><td>デリミタで区切って第1フィールドを抽出</td></tr>
               <tr><td class="cmd"><code>tr 'a-z' 'A-Z'</code></td><td>小文字を大文字に変換</td></tr>
-              <tr><td class="cmd"><code>xargs cmd</code></td><td>標準入力からコマンドの引数を構築</td></tr>
+              <tr><td class="cmd"><code>xargs <var>cmd</var></code></td><td>標準入力からコマンドの引数を構築</td></tr>
             </tbody>
           </table>
         </article>
@@ -402,16 +411,16 @@
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>cmd1 | cmd2</code></td><td>cmd1の出力をcmd2の入力に渡す</td></tr>
-              <tr><td class="cmd"><code>cmd &gt; file</code></td><td>標準出力をファイルに書き込み(上書き)</td></tr>
-              <tr><td class="cmd"><code>cmd &gt;&gt; file</code></td><td>標準出力をファイルに追記</td></tr>
-              <tr><td class="cmd"><code>cmd &lt; file</code></td><td>ファイルを標準入力として渡す</td></tr>
-              <tr><td class="cmd"><code>cmd 2&gt; file</code></td><td>標準エラー出力をファイルにリダイレクト</td></tr>
-              <tr><td class="cmd"><code>cmd 2&gt;&amp;1</code></td><td>標準エラーを標準出力にマージ</td></tr>
-              <tr><td class="cmd"><code>cmd | tee file</code></td><td>出力を画面とファイルの両方に出力</td></tr>
-              <tr><td class="cmd"><code>cmd1 &amp;&amp; cmd2</code></td><td>cmd1成功時のみcmd2を実行</td></tr>
-              <tr><td class="cmd"><code>cmd1 || cmd2</code></td><td>cmd1失敗時のみcmd2を実行</td></tr>
-              <tr><td class="cmd"><code>cmd1 ; cmd2</code></td><td>cmd1の結果に関わらずcmd2を実行</td></tr>
+              <tr><td class="cmd"><code><var>cmd1</var> | <var>cmd2</var></code></td><td>cmd1の出力をcmd2の入力に渡す</td></tr>
+              <tr><td class="cmd"><code><var>cmd</var> &gt; <var>file</var></code></td><td>標準出力をファイルに書き込み(上書き)</td></tr>
+              <tr><td class="cmd"><code><var>cmd</var> &gt;&gt; <var>file</var></code></td><td>標準出力をファイルに追記</td></tr>
+              <tr><td class="cmd"><code><var>cmd</var> &lt; <var>file</var></code></td><td>ファイルを標準入力として渡す</td></tr>
+              <tr><td class="cmd"><code><var>cmd</var> 2&gt; <var>file</var></code></td><td>標準エラー出力をファイルにリダイレクト</td></tr>
+              <tr><td class="cmd"><code><var>cmd</var> 2&gt;&amp;1</code></td><td>標準エラーを標準出力にマージ</td></tr>
+              <tr><td class="cmd"><code><var>cmd</var> | tee <var>file</var></code></td><td>出力を画面とファイルの両方に出力</td></tr>
+              <tr><td class="cmd"><code><var>cmd1</var> &amp;&amp; <var>cmd2</var></code></td><td>cmd1成功時のみcmd2を実行</td></tr>
+              <tr><td class="cmd"><code><var>cmd1</var> || <var>cmd2</var></code></td><td>cmd1失敗時のみcmd2を実行</td></tr>
+              <tr><td class="cmd"><code><var>cmd1</var> ; <var>cmd2</var></code></td><td>cmd1の結果に関わらずcmd2を実行</td></tr>
             </tbody>
           </table>
         </article>
@@ -423,14 +432,14 @@
             <tbody>
               <tr><td class="cmd"><code>clear</code></td><td>画面をクリア</td></tr>
               <tr><td class="cmd"><code>history</code></td><td>コマンド履歴を表示</td></tr>
-              <tr><td class="cmd"><code>!n</code></td><td>履歴のn番目のコマンドを再実行</td></tr>
+              <tr><td class="cmd"><code>!<var>n</var></code></td><td>履歴のn番目のコマンドを再実行</td></tr>
               <tr><td class="cmd"><code>!!</code></td><td>直前のコマンドを再実行</td></tr>
-              <tr><td class="cmd"><code>alias ll='ls -la'</code></td><td>コマンドのエイリアスを定義</td></tr>
-              <tr><td class="cmd"><code>unalias ll</code></td><td>エイリアスを削除</td></tr>
-              <tr><td class="cmd"><code>echo $VAR</code></td><td>変数の値を表示</td></tr>
-              <tr><td class="cmd"><code>export VAR=value</code></td><td>環境変数を設定</td></tr>
+              <tr><td class="cmd"><code>alias <var>ll</var>='<var>ls -la</var>'</code></td><td>コマンドのエイリアスを定義</td></tr>
+              <tr><td class="cmd"><code>unalias <var>ll</var></code></td><td>エイリアスを削除</td></tr>
+              <tr><td class="cmd"><code>echo $<var>VAR</var></code></td><td>変数の値を表示</td></tr>
+              <tr><td class="cmd"><code>export <var>VAR</var>=<var>value</var></code></td><td>環境変数を設定</td></tr>
               <tr><td class="cmd"><code>source ~/.bashrc</code></td><td>設定ファイルを現在のシェルに読み込み</td></tr>
-              <tr><td class="cmd"><code>type cmd</code></td><td>コマンドの種類を表示(alias/builtin/file)</td></tr>
+              <tr><td class="cmd"><code>type <var>cmd</var></code></td><td>コマンドの種類を表示(alias/builtin/file)</td></tr>
               <tr><td class="cmd"><code>exit</code></td><td>シェルを終了</td></tr>
             </tbody>
           </table>
@@ -471,19 +480,19 @@
             <tbody>
               <tr><td class="cmd"><code>git status</code></td><td>ワーキングツリーの状態を表示</td></tr>
               <tr><td class="cmd"><code>git add -A</code></td><td>全変更をステージングに追加</td></tr>
-              <tr><td class="cmd"><code>git commit -m "msg"</code></td><td>ステージした変更をコミット</td></tr>
-              <tr><td class="cmd"><code>git push origin branch</code></td><td>ブランチをリモートにプッシュ</td></tr>
+              <tr><td class="cmd"><code>git commit -m "<var>msg</var>"</code></td><td>ステージした変更をコミット</td></tr>
+              <tr><td class="cmd"><code>git push origin <var>branch</var></code></td><td>ブランチをリモートにプッシュ</td></tr>
               <tr><td class="cmd"><code>git pull</code></td><td>リモートの変更を取得してマージ</td></tr>
-              <tr><td class="cmd"><code>git switch -c name</code></td><td>新ブランチを作成して切り替え</td></tr>
+              <tr><td class="cmd"><code>git switch -c <var>name</var></code></td><td>新ブランチを作成して切り替え</td></tr>
               <tr><td class="cmd"><code>git log --oneline --all --graph</code></td><td>全ブランチの履歴をグラフ表示</td></tr>
               <tr><td class="cmd"><code>git diff</code></td><td>ステージ前の変更を表示</td></tr>
               <tr><td class="cmd"><code>git stash</code></td><td>作業中の変更を一時退避</td></tr>
-              <tr><td class="cmd"><code>git merge feat</code></td><td>完了ブランチをマージ</td></tr>
-              <tr><td class="cmd"><code>git worktree add ../feat -b feat</code></td><td>新ブランチ+ワークツリーを作成</td></tr>
+              <tr><td class="cmd"><code>git merge <var>feat</var></code></td><td>完了ブランチをマージ</td></tr>
+              <tr><td class="cmd"><code>git worktree add <var>../feat</var> -b <var>feat</var></code></td><td>新ブランチ+ワークツリーを作成</td></tr>
               <tr><td class="cmd"><code>git worktree list</code></td><td>全ワークツリーを一覧表示</td></tr>
-              <tr><td class="cmd"><code>git worktree remove ../feat</code></td><td>完了したワークツリーを削除</td></tr>
-              <tr><td class="cmd"><code>git diff main..feat</code></td><td>mainとの差分を確認</td></tr>
-              <tr><td class="cmd"><code>git branch -d feat</code></td><td>マージ済みブランチを削除</td></tr>
+              <tr><td class="cmd"><code>git worktree remove <var>../feat</var></code></td><td>完了したワークツリーを削除</td></tr>
+              <tr><td class="cmd"><code>git diff <var>main</var>..<var>feat</var></code></td><td>mainとの差分を確認</td></tr>
+              <tr><td class="cmd"><code>git branch -d <var>feat</var></code></td><td>マージ済みブランチを削除</td></tr>
               <tr><td class="cmd"><code>git push --force-with-lease</code></td><td>安全にフォースプッシュ</td></tr>
             </tbody>
           </table>
@@ -495,10 +504,10 @@
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
               <tr><td class="cmd"><code>git init</code></td><td>新しいリポジトリを初期化</td></tr>
-              <tr><td class="cmd"><code>git clone url</code></td><td>リモートリポジトリをクローン</td></tr>
-              <tr><td class="cmd"><code>git clone --depth 1 url</code></td><td>最新コミットのみのシャロークローン</td></tr>
-              <tr><td class="cmd"><code>git config --global user.name "name"</code></td><td>グローバルユーザー名を設定</td></tr>
-              <tr><td class="cmd"><code>git config --global user.email "email"</code></td><td>グローバルメールアドレスを設定</td></tr>
+              <tr><td class="cmd"><code>git clone <var>url</var></code></td><td>リモートリポジトリをクローン</td></tr>
+              <tr><td class="cmd"><code>git clone --depth 1 <var>url</var></code></td><td>最新コミットのみのシャロークローン</td></tr>
+              <tr><td class="cmd"><code>git config --global user.name "<var>name</var>"</code></td><td>グローバルユーザー名を設定</td></tr>
+              <tr><td class="cmd"><code>git config --global user.email "<var>email</var>"</code></td><td>グローバルメールアドレスを設定</td></tr>
               <tr><td class="cmd"><code>git config --list</code></td><td>設定を一覧表示</td></tr>
             </tbody>
           </table>
@@ -510,10 +519,10 @@
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
               <tr><td class="cmd"><code>git status</code></td><td>ワーキングツリーの状態を表示</td></tr>
-              <tr><td class="cmd"><code>git add file</code></td><td>ファイルをステージングエリアに追加</td></tr>
+              <tr><td class="cmd"><code>git add <var>file</var></code></td><td>ファイルをステージングエリアに追加</td></tr>
               <tr><td class="cmd"><code>git add -A</code></td><td>全変更をステージングエリアに追加</td></tr>
               <tr><td class="cmd"><code>git add -p</code></td><td>変更をハンク単位で対話的にステージング</td></tr>
-              <tr><td class="cmd"><code>git commit -m "msg"</code></td><td>ステージした変更をコミット</td></tr>
+              <tr><td class="cmd"><code>git commit -m "<var>msg</var>"</code></td><td>ステージした変更をコミット</td></tr>
               <tr><td class="cmd"><code>git commit --amend</code></td><td>直前のコミットを修正</td></tr>
               <tr><td class="cmd"><code>git diff</code></td><td>ステージ前の変更を表示</td></tr>
               <tr><td class="cmd"><code>git diff --staged</code></td><td>ステージ済みの変更を表示</td></tr>
@@ -529,12 +538,12 @@
             <tbody>
               <tr><td class="cmd"><code>git branch</code></td><td>ローカルブランチの一覧を表示</td></tr>
               <tr><td class="cmd"><code>git branch -a</code></td><td>リモート含む全ブランチを表示</td></tr>
-              <tr><td class="cmd"><code>git branch name</code></td><td>新しいブランチを作成</td></tr>
-              <tr><td class="cmd"><code>git branch -d name</code></td><td>マージ済みブランチを削除</td></tr>
-              <tr><td class="cmd"><code>git branch -D name</code></td><td>ブランチを強制削除</td></tr>
-              <tr><td class="cmd"><code>git switch name</code></td><td>ブランチを切り替え</td></tr>
-              <tr><td class="cmd"><code>git switch -c name</code></td><td>新ブランチを作成して切り替え</td></tr>
-              <tr><td class="cmd"><code>git merge name</code></td><td>指定ブランチを現在のブランチにマージ</td></tr>
+              <tr><td class="cmd"><code>git branch <var>name</var></code></td><td>新しいブランチを作成</td></tr>
+              <tr><td class="cmd"><code>git branch -d <var>name</var></code></td><td>マージ済みブランチを削除</td></tr>
+              <tr><td class="cmd"><code>git branch -D <var>name</var></code></td><td>ブランチを強制削除</td></tr>
+              <tr><td class="cmd"><code>git switch <var>name</var></code></td><td>ブランチを切り替え</td></tr>
+              <tr><td class="cmd"><code>git switch -c <var>name</var></code></td><td>新ブランチを作成して切り替え</td></tr>
+              <tr><td class="cmd"><code>git merge <var>name</var></code></td><td>指定ブランチを現在のブランチにマージ</td></tr>
               <tr><td class="cmd"><code>git merge --abort</code></td><td>マージを中断して元の状態に戻す</td></tr>
             </tbody>
           </table>
@@ -546,12 +555,12 @@
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
               <tr><td class="cmd"><code>git remote -v</code></td><td>リモートリポジトリの一覧を表示</td></tr>
-              <tr><td class="cmd"><code>git remote add name url</code></td><td>リモートリポジトリを追加</td></tr>
+              <tr><td class="cmd"><code>git remote add <var>name</var> <var>url</var></code></td><td>リモートリポジトリを追加</td></tr>
               <tr><td class="cmd"><code>git fetch origin</code></td><td>リモートの変更を取得(マージなし)</td></tr>
               <tr><td class="cmd"><code>git pull</code></td><td>リモートの変更を取得してマージ</td></tr>
               <tr><td class="cmd"><code>git pull --rebase</code></td><td>リモートの変更を取得してリベース</td></tr>
-              <tr><td class="cmd"><code>git push origin branch</code></td><td>ブランチをリモートにプッシュ</td></tr>
-              <tr><td class="cmd"><code>git push -u origin branch</code></td><td>上流ブランチを設定してプッシュ</td></tr>
+              <tr><td class="cmd"><code>git push origin <var>branch</var></code></td><td>ブランチをリモートにプッシュ</td></tr>
+              <tr><td class="cmd"><code>git push -u origin <var>branch</var></code></td><td>上流ブランチを設定してプッシュ</td></tr>
               <tr><td class="cmd"><code>git push --force-with-lease</code></td><td>安全にフォースプッシュ</td></tr>
             </tbody>
           </table>
@@ -564,7 +573,7 @@
             <tbody>
               <tr><td class="cmd"><code>git stash</code></td><td>作業中の変更を一時退避</td></tr>
               <tr><td class="cmd"><code>git stash -u</code></td><td>未追跡ファイルも含めて退避</td></tr>
-              <tr><td class="cmd"><code>git stash push -m "msg"</code></td><td>メッセージ付きで退避</td></tr>
+              <tr><td class="cmd"><code>git stash push -m "<var>msg</var>"</code></td><td>メッセージ付きで退避</td></tr>
               <tr><td class="cmd"><code>git stash pop</code></td><td>最新のスタッシュを復元して削除</td></tr>
               <tr><td class="cmd"><code>git stash apply</code></td><td>最新のスタッシュを復元(削除しない)</td></tr>
               <tr><td class="cmd"><code>git stash list</code></td><td>スタッシュの一覧を表示</td></tr>
@@ -582,10 +591,10 @@
               <tr><td class="cmd"><code>git log</code></td><td>コミット履歴を表示</td></tr>
               <tr><td class="cmd"><code>git log --oneline</code></td><td>コミット履歴を1行ずつ表示</td></tr>
               <tr><td class="cmd"><code>git log --oneline --graph</code></td><td>ブランチグラフ付きで履歴表示</td></tr>
-              <tr><td class="cmd"><code>git log -p file</code></td><td>ファイルの変更履歴をdiff付きで表示</td></tr>
-              <tr><td class="cmd"><code>git log --author="name"</code></td><td>特定の作者のコミットのみ表示</td></tr>
-              <tr><td class="cmd"><code>git blame file</code></td><td>各行の最終変更者とコミットを表示</td></tr>
-              <tr><td class="cmd"><code>git show commit</code></td><td>コミットの詳細と差分を表示</td></tr>
+              <tr><td class="cmd"><code>git log -p <var>file</var></code></td><td>ファイルの変更履歴をdiff付きで表示</td></tr>
+              <tr><td class="cmd"><code>git log --author="<var>name</var>"</code></td><td>特定の作者のコミットのみ表示</td></tr>
+              <tr><td class="cmd"><code>git blame <var>file</var></code></td><td>各行の最終変更者とコミットを表示</td></tr>
+              <tr><td class="cmd"><code>git show <var>commit</var></code></td><td>コミットの詳細と差分を表示</td></tr>
               <tr><td class="cmd"><code>git shortlog -sn</code></td><td>作者別のコミット数を表示</td></tr>
             </tbody>
           </table>
@@ -596,11 +605,11 @@
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>git restore file</code></td><td>ワーキングツリーの変更を取り消し</td></tr>
-              <tr><td class="cmd"><code>git restore --staged file</code></td><td>ステージングを取り消し</td></tr>
+              <tr><td class="cmd"><code>git restore <var>file</var></code></td><td>ワーキングツリーの変更を取り消し</td></tr>
+              <tr><td class="cmd"><code>git restore --staged <var>file</var></code></td><td>ステージングを取り消し</td></tr>
               <tr><td class="cmd"><code>git reset HEAD~1</code></td><td>直前のコミットを取り消し(変更は保持)</td></tr>
               <tr><td class="cmd"><code>git reset --hard HEAD~1</code></td><td>直前のコミットと変更を完全に取り消し</td></tr>
-              <tr><td class="cmd"><code>git revert commit</code></td><td>コミットを打ち消す新しいコミットを作成</td></tr>
+              <tr><td class="cmd"><code>git revert <var>commit</var></code></td><td>コミットを打ち消す新しいコミットを作成</td></tr>
               <tr><td class="cmd"><code>git clean -fd</code></td><td>未追跡のファイルとディレクトリを削除</td></tr>
             </tbody>
           </table>
@@ -611,12 +620,12 @@
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>git worktree add path branch</code></td><td>ブランチの作業ツリーを別パスに作成</td></tr>
-              <tr><td class="cmd"><code>git worktree add -b new path</code></td><td>新ブランチ作成と同時にワークツリー追加</td></tr>
+              <tr><td class="cmd"><code>git worktree add <var>path</var> <var>branch</var></code></td><td>ブランチの作業ツリーを別パスに作成</td></tr>
+              <tr><td class="cmd"><code>git worktree add -b <var>new</var> <var>path</var></code></td><td>新ブランチ作成と同時にワークツリー追加</td></tr>
               <tr><td class="cmd"><code>git worktree list</code></td><td>全ワークツリーを一覧表示</td></tr>
-              <tr><td class="cmd"><code>git worktree remove path</code></td><td>ワークツリーを削除</td></tr>
+              <tr><td class="cmd"><code>git worktree remove <var>path</var></code></td><td>ワークツリーを削除</td></tr>
               <tr><td class="cmd"><code>git worktree prune</code></td><td>不要なワークツリー情報をクリーンアップ</td></tr>
-              <tr><td class="cmd"><code>git worktree move old new</code></td><td>ワークツリーを別のパスに移動</td></tr>
+              <tr><td class="cmd"><code>git worktree move <var>old</var> <var>new</var></code></td><td>ワークツリーを別のパスに移動</td></tr>
             </tbody>
           </table>
         </article>
@@ -626,15 +635,15 @@
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>git rebase branch</code></td><td>現在のブランチを指定ブランチ上にリベース</td></tr>
+              <tr><td class="cmd"><code>git rebase <var>branch</var></code></td><td>現在のブランチを指定ブランチ上にリベース</td></tr>
               <tr><td class="cmd"><code>git rebase --abort</code></td><td>リベースを中断して元に戻す</td></tr>
               <tr><td class="cmd"><code>git rebase --continue</code></td><td>コンフリクト解決後にリベースを続行</td></tr>
-              <tr><td class="cmd"><code>git cherry-pick commit</code></td><td>特定のコミットを現在のブランチに適用</td></tr>
+              <tr><td class="cmd"><code>git cherry-pick <var>commit</var></code></td><td>特定のコミットを現在のブランチに適用</td></tr>
               <tr><td class="cmd"><code>git bisect start</code></td><td>二分探索でバグ導入コミットを特定開始</td></tr>
               <tr><td class="cmd"><code>git reflog</code></td><td>HEADの移動履歴を表示(復旧に便利)</td></tr>
-              <tr><td class="cmd"><code>git tag v1.0</code></td><td>軽量タグを作成</td></tr>
-              <tr><td class="cmd"><code>git tag -a v1.0 -m "msg"</code></td><td>注釈付きタグを作成</td></tr>
-              <tr><td class="cmd"><code>git submodule add url</code></td><td>サブモジュールを追加</td></tr>
+              <tr><td class="cmd"><code>git tag <var>v1.0</var></code></td><td>軽量タグを作成</td></tr>
+              <tr><td class="cmd"><code>git tag -a <var>v1.0</var> -m "<var>msg</var>"</code></td><td>注釈付きタグを作成</td></tr>
+              <tr><td class="cmd"><code>git submodule add <var>url</var></code></td><td>サブモジュールを追加</td></tr>
             </tbody>
           </table>
         </article>
@@ -651,15 +660,15 @@
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>ssh user@host</code></td><td>リモートホストにSSH接続</td></tr>
-              <tr><td class="cmd"><code>scp file user@host:path</code></td><td>SSH経由でファイルを転送</td></tr>
-              <tr><td class="cmd"><code>chmod 755 file</code></td><td>所有者rwx、グループ・他rx権限を設定</td></tr>
+              <tr><td class="cmd"><code>ssh <var>user</var>@<var>host</var></code></td><td>リモートホストにSSH接続</td></tr>
+              <tr><td class="cmd"><code>scp <var>file</var> <var>user</var>@<var>host</var>:<var>path</var></code></td><td>SSH経由でファイルを転送</td></tr>
+              <tr><td class="cmd"><code>chmod <var>755</var> <var>file</var></code></td><td>所有者rwx、グループ・他rx権限を設定</td></tr>
               <tr><td class="cmd"><code>ps aux</code></td><td>全プロセスを詳細表示</td></tr>
-              <tr><td class="cmd"><code>kill -9 PID</code></td><td>プロセスを強制終了(SIGKILL)</td></tr>
-              <tr><td class="cmd"><code>curl -O url</code></td><td>URLからファイルをダウンロード</td></tr>
+              <tr><td class="cmd"><code>kill -9 <var>PID</var></code></td><td>プロセスを強制終了(SIGKILL)</td></tr>
+              <tr><td class="cmd"><code>curl -O <var>url</var></code></td><td>URLからファイルをダウンロード</td></tr>
               <tr><td class="cmd"><code>df -h</code></td><td>ディスク使用量を人間が読める形式で表示</td></tr>
-              <tr><td class="cmd"><code>tar czf archive.tar.gz dir</code></td><td>gzip圧縮のtarアーカイブを作成</td></tr>
-              <tr><td class="cmd"><code>ping host</code></td><td>ホストへの接続を確認</td></tr>
+              <tr><td class="cmd"><code>tar czf <var>archive.tar.gz</var> <var>dir</var></code></td><td>gzip圧縮のtarアーカイブを作成</td></tr>
+              <tr><td class="cmd"><code>ping <var>host</var></code></td><td>ホストへの接続を確認</td></tr>
               <tr><td class="cmd"><code>ss -tlnp</code></td><td>リスニング中のTCPポートを表示</td></tr>
             </tbody>
           </table>
@@ -670,12 +679,12 @@
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>chmod 755 file</code></td><td>所有者rwx、グループ・他rx権限を設定</td></tr>
-              <tr><td class="cmd"><code>chmod +x file</code></td><td>実行権限を追加</td></tr>
-              <tr><td class="cmd"><code>chmod -R 644 dir</code></td><td>ディレクトリ内を再帰的に権限変更</td></tr>
-              <tr><td class="cmd"><code>chown user:group file</code></td><td>所有者とグループを変更</td></tr>
-              <tr><td class="cmd"><code>chgrp group file</code></td><td>グループを変更</td></tr>
-              <tr><td class="cmd"><code>umask 022</code></td><td>デフォルトの権限マスクを設定</td></tr>
+              <tr><td class="cmd"><code>chmod <var>755</var> <var>file</var></code></td><td>所有者rwx、グループ・他rx権限を設定</td></tr>
+              <tr><td class="cmd"><code>chmod +x <var>file</var></code></td><td>実行権限を追加</td></tr>
+              <tr><td class="cmd"><code>chmod -R <var>644</var> <var>dir</var></code></td><td>ディレクトリ内を再帰的に権限変更</td></tr>
+              <tr><td class="cmd"><code>chown <var>user</var>:<var>group</var> <var>file</var></code></td><td>所有者とグループを変更</td></tr>
+              <tr><td class="cmd"><code>chgrp <var>group</var> <var>file</var></code></td><td>グループを変更</td></tr>
+              <tr><td class="cmd"><code>umask <var>022</var></code></td><td>デフォルトの権限マスクを設定</td></tr>
             </tbody>
           </table>
         </article>
@@ -686,15 +695,15 @@
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
               <tr><td class="cmd"><code>ps aux</code></td><td>全プロセスを詳細表示</td></tr>
-              <tr><td class="cmd"><code>ps aux | grep name</code></td><td>プロセス名でフィルタ</td></tr>
+              <tr><td class="cmd"><code>ps aux | grep <var>name</var></code></td><td>プロセス名でフィルタ</td></tr>
               <tr><td class="cmd"><code>top</code></td><td>プロセスをリアルタイム監視</td></tr>
               <tr><td class="cmd"><code>htop</code></td><td>プロセスを対話的に監視(要インストール)</td></tr>
-              <tr><td class="cmd"><code>kill PID</code></td><td>プロセスにSIGTERMを送信</td></tr>
-              <tr><td class="cmd"><code>kill -9 PID</code></td><td>プロセスを強制終了(SIGKILL)</td></tr>
+              <tr><td class="cmd"><code>kill <var>PID</var></code></td><td>プロセスにSIGTERMを送信</td></tr>
+              <tr><td class="cmd"><code>kill -9 <var>PID</var></code></td><td>プロセスを強制終了(SIGKILL)</td></tr>
               <tr><td class="cmd"><code>bg</code></td><td>停止中のジョブをバックグラウンドで再開</td></tr>
               <tr><td class="cmd"><code>fg</code></td><td>バックグラウンドジョブをフォアグラウンドに</td></tr>
               <tr><td class="cmd"><code>jobs</code></td><td>現在のジョブ一覧を表示</td></tr>
-              <tr><td class="cmd"><code>nohup cmd &amp;</code></td><td>ログアウト後も継続するバックグラウンド実行</td></tr>
+              <tr><td class="cmd"><code>nohup <var>cmd</var> &amp;</code></td><td>ログアウト後も継続するバックグラウンド実行</td></tr>
             </tbody>
           </table>
         </article>
@@ -704,16 +713,16 @@
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>curl -O url</code></td><td>URLからファイルをダウンロード</td></tr>
-              <tr><td class="cmd"><code>curl -X POST -d data url</code></td><td>POSTリクエストを送信</td></tr>
-              <tr><td class="cmd"><code>wget url</code></td><td>URLからファイルをダウンロード</td></tr>
-              <tr><td class="cmd"><code>ssh user@host</code></td><td>リモートホストにSSH接続</td></tr>
-              <tr><td class="cmd"><code>scp file user@host:path</code></td><td>SSH経由でファイルを転送</td></tr>
-              <tr><td class="cmd"><code>rsync -avz src dst</code></td><td>差分のみを効率的に同期</td></tr>
-              <tr><td class="cmd"><code>ping host</code></td><td>ホストへの接続を確認</td></tr>
+              <tr><td class="cmd"><code>curl -O <var>url</var></code></td><td>URLからファイルをダウンロード</td></tr>
+              <tr><td class="cmd"><code>curl -X POST -d <var>data</var> <var>url</var></code></td><td>POSTリクエストを送信</td></tr>
+              <tr><td class="cmd"><code>wget <var>url</var></code></td><td>URLからファイルをダウンロード</td></tr>
+              <tr><td class="cmd"><code>ssh <var>user</var>@<var>host</var></code></td><td>リモートホストにSSH接続</td></tr>
+              <tr><td class="cmd"><code>scp <var>file</var> <var>user</var>@<var>host</var>:<var>path</var></code></td><td>SSH経由でファイルを転送</td></tr>
+              <tr><td class="cmd"><code>rsync -avz <var>src</var> <var>dst</var></code></td><td>差分のみを効率的に同期</td></tr>
+              <tr><td class="cmd"><code>ping <var>host</var></code></td><td>ホストへの接続を確認</td></tr>
               <tr><td class="cmd"><code>ss -tlnp</code></td><td>リスニング中のTCPポートを表示</td></tr>
-              <tr><td class="cmd"><code>dig domain</code></td><td>DNSレコードを照会</td></tr>
-              <tr><td class="cmd"><code>nc -zv host port</code></td><td>ポートの疎通を確認</td></tr>
+              <tr><td class="cmd"><code>dig <var>domain</var></code></td><td>DNSレコードを照会</td></tr>
+              <tr><td class="cmd"><code>nc -zv <var>host</var> <var>port</var></code></td><td>ポートの疎通を確認</td></tr>
             </tbody>
           </table>
         </article>
@@ -725,13 +734,13 @@
             <tbody>
               <tr><td class="cmd"><code>uname -a</code></td><td>システム情報を全て表示</td></tr>
               <tr><td class="cmd"><code>df -h</code></td><td>ディスク使用量を人間が読める形式で表示</td></tr>
-              <tr><td class="cmd"><code>du -sh dir</code></td><td>ディレクトリの合計サイズを表示</td></tr>
+              <tr><td class="cmd"><code>du -sh <var>dir</var></code></td><td>ディレクトリの合計サイズを表示</td></tr>
               <tr><td class="cmd"><code>free -h</code></td><td>メモリ使用量を表示</td></tr>
               <tr><td class="cmd"><code>uptime</code></td><td>システムの稼働時間を表示</td></tr>
               <tr><td class="cmd"><code>whoami</code></td><td>現在のユーザー名を表示</td></tr>
               <tr><td class="cmd"><code>hostname</code></td><td>ホスト名を表示</td></tr>
               <tr><td class="cmd"><code>env</code></td><td>環境変数を一覧表示</td></tr>
-              <tr><td class="cmd"><code>which cmd</code></td><td>コマンドのパスを表示</td></tr>
+              <tr><td class="cmd"><code>which <var>cmd</var></code></td><td>コマンドのパスを表示</td></tr>
             </tbody>
           </table>
         </article>
@@ -741,13 +750,13 @@
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>tar czf archive.tar.gz dir</code></td><td>gzip圧縮のtarアーカイブを作成</td></tr>
-              <tr><td class="cmd"><code>tar xzf archive.tar.gz</code></td><td>gzip圧縮のtarアーカイブを展開</td></tr>
-              <tr><td class="cmd"><code>tar tf archive.tar.gz</code></td><td>アーカイブの中身を一覧表示</td></tr>
-              <tr><td class="cmd"><code>gzip file</code></td><td>ファイルをgzip圧縮</td></tr>
-              <tr><td class="cmd"><code>gunzip file.gz</code></td><td>gzipファイルを展開</td></tr>
-              <tr><td class="cmd"><code>zip -r archive.zip dir</code></td><td>ディレクトリをzip圧縮</td></tr>
-              <tr><td class="cmd"><code>unzip archive.zip</code></td><td>zipファイルを展開</td></tr>
+              <tr><td class="cmd"><code>tar czf <var>archive.tar.gz</var> <var>dir</var></code></td><td>gzip圧縮のtarアーカイブを作成</td></tr>
+              <tr><td class="cmd"><code>tar xzf <var>archive.tar.gz</var></code></td><td>gzip圧縮のtarアーカイブを展開</td></tr>
+              <tr><td class="cmd"><code>tar tf <var>archive.tar.gz</var></code></td><td>アーカイブの中身を一覧表示</td></tr>
+              <tr><td class="cmd"><code>gzip <var>file</var></code></td><td>ファイルをgzip圧縮</td></tr>
+              <tr><td class="cmd"><code>gunzip <var>file.gz</var></code></td><td>gzipファイルを展開</td></tr>
+              <tr><td class="cmd"><code>zip -r <var>archive.zip</var> <var>dir</var></code></td><td>ディレクトリをzip圧縮</td></tr>
+              <tr><td class="cmd"><code>unzip <var>archive.zip</var></code></td><td>zipファイルを展開</td></tr>
             </tbody>
           </table>
         </article>
@@ -764,12 +773,12 @@
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>docker run -d image</code></td><td>バックグラウンドでコンテナを起動</td></tr>
+              <tr><td class="cmd"><code>docker run -d <var>image</var></code></td><td>バックグラウンドでコンテナを起動</td></tr>
               <tr><td class="cmd"><code>docker ps</code></td><td>実行中のコンテナを一覧表示</td></tr>
-              <tr><td class="cmd"><code>docker stop name</code></td><td>コンテナを停止</td></tr>
-              <tr><td class="cmd"><code>docker logs -f name</code></td><td>ログをリアルタイムに追跡</td></tr>
-              <tr><td class="cmd"><code>docker exec -it name sh</code></td><td>実行中コンテナでシェルを開く</td></tr>
-              <tr><td class="cmd"><code>docker build -t name .</code></td><td>Dockerfileからイメージをビルド</td></tr>
+              <tr><td class="cmd"><code>docker stop <var>name</var></code></td><td>コンテナを停止</td></tr>
+              <tr><td class="cmd"><code>docker logs -f <var>name</var></code></td><td>ログをリアルタイムに追跡</td></tr>
+              <tr><td class="cmd"><code>docker exec -it <var>name</var> sh</code></td><td>実行中コンテナでシェルを開く</td></tr>
+              <tr><td class="cmd"><code>docker build -t <var>name</var> .</code></td><td>Dockerfileからイメージをビルド</td></tr>
               <tr><td class="cmd"><code>docker compose up -d</code></td><td>バックグラウンドでサービスを起動</td></tr>
               <tr><td class="cmd"><code>docker compose down</code></td><td>サービスを停止してコンテナを削除</td></tr>
               <tr><td class="cmd"><code>docker images</code></td><td>ローカルイメージの一覧を表示</td></tr>
@@ -783,21 +792,21 @@
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>docker run image</code></td><td>イメージからコンテナを起動</td></tr>
-              <tr><td class="cmd"><code>docker run -d image</code></td><td>バックグラウンドでコンテナを起動</td></tr>
-              <tr><td class="cmd"><code>docker run -it image sh</code></td><td>対話シェル付きでコンテナを起動</td></tr>
-              <tr><td class="cmd"><code>docker run -p 8080:80 image</code></td><td>ポートマッピング付きで起動</td></tr>
-              <tr><td class="cmd"><code>docker run -v /host:/cont image</code></td><td>ボリュームをマウントして起動</td></tr>
-              <tr><td class="cmd"><code>docker run --rm image</code></td><td>終了時にコンテナを自動削除</td></tr>
-              <tr><td class="cmd"><code>docker run --name myapp image</code></td><td>名前付きでコンテナを起動</td></tr>
-              <tr><td class="cmd"><code>docker run -e KEY=VAL image</code></td><td>環境変数を設定して起動</td></tr>
+              <tr><td class="cmd"><code>docker run <var>image</var></code></td><td>イメージからコンテナを起動</td></tr>
+              <tr><td class="cmd"><code>docker run -d <var>image</var></code></td><td>バックグラウンドでコンテナを起動</td></tr>
+              <tr><td class="cmd"><code>docker run -it <var>image</var> sh</code></td><td>対話シェル付きでコンテナを起動</td></tr>
+              <tr><td class="cmd"><code>docker run -p <var>8080</var>:<var>80</var> <var>image</var></code></td><td>ポートマッピング付きで起動</td></tr>
+              <tr><td class="cmd"><code>docker run -v <var>/host</var>:<var>/cont</var> <var>image</var></code></td><td>ボリュームをマウントして起動</td></tr>
+              <tr><td class="cmd"><code>docker run --rm <var>image</var></code></td><td>終了時にコンテナを自動削除</td></tr>
+              <tr><td class="cmd"><code>docker run --name <var>myapp</var> <var>image</var></code></td><td>名前付きでコンテナを起動</td></tr>
+              <tr><td class="cmd"><code>docker run -e <var>KEY</var>=<var>VAL</var> <var>image</var></code></td><td>環境変数を設定して起動</td></tr>
               <tr><td class="cmd"><code>docker ps</code></td><td>実行中のコンテナを一覧表示</td></tr>
               <tr><td class="cmd"><code>docker ps -a</code></td><td>全コンテナを一覧表示(停止中含む)</td></tr>
-              <tr><td class="cmd"><code>docker stop name</code></td><td>コンテナを停止</td></tr>
-              <tr><td class="cmd"><code>docker start name</code></td><td>停止中のコンテナを起動</td></tr>
-              <tr><td class="cmd"><code>docker restart name</code></td><td>コンテナを再起動</td></tr>
-              <tr><td class="cmd"><code>docker rm name</code></td><td>停止中のコンテナを削除</td></tr>
-              <tr><td class="cmd"><code>docker rm -f name</code></td><td>実行中のコンテナを強制削除</td></tr>
+              <tr><td class="cmd"><code>docker stop <var>name</var></code></td><td>コンテナを停止</td></tr>
+              <tr><td class="cmd"><code>docker start <var>name</var></code></td><td>停止中のコンテナを起動</td></tr>
+              <tr><td class="cmd"><code>docker restart <var>name</var></code></td><td>コンテナを再起動</td></tr>
+              <tr><td class="cmd"><code>docker rm <var>name</var></code></td><td>停止中のコンテナを削除</td></tr>
+              <tr><td class="cmd"><code>docker rm -f <var>name</var></code></td><td>実行中のコンテナを強制削除</td></tr>
             </tbody>
           </table>
         </article>
@@ -807,14 +816,14 @@
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>docker exec -it name sh</code></td><td>実行中コンテナでシェルを開く</td></tr>
-              <tr><td class="cmd"><code>docker exec name cmd</code></td><td>実行中コンテナでコマンドを実行</td></tr>
-              <tr><td class="cmd"><code>docker logs name</code></td><td>コンテナのログを表示</td></tr>
-              <tr><td class="cmd"><code>docker logs -f name</code></td><td>ログをリアルタイムに追跡</td></tr>
-              <tr><td class="cmd"><code>docker logs --tail 100 name</code></td><td>最新100行のログを表示</td></tr>
-              <tr><td class="cmd"><code>docker cp name:/path ./local</code></td><td>コンテナからファイルをコピー</td></tr>
-              <tr><td class="cmd"><code>docker cp ./local name:/path</code></td><td>コンテナへファイルをコピー</td></tr>
-              <tr><td class="cmd"><code>docker attach name</code></td><td>実行中コンテナの標準入出力に接続</td></tr>
+              <tr><td class="cmd"><code>docker exec -it <var>name</var> sh</code></td><td>実行中コンテナでシェルを開く</td></tr>
+              <tr><td class="cmd"><code>docker exec <var>name</var> <var>cmd</var></code></td><td>実行中コンテナでコマンドを実行</td></tr>
+              <tr><td class="cmd"><code>docker logs <var>name</var></code></td><td>コンテナのログを表示</td></tr>
+              <tr><td class="cmd"><code>docker logs -f <var>name</var></code></td><td>ログをリアルタイムに追跡</td></tr>
+              <tr><td class="cmd"><code>docker logs --tail 100 <var>name</var></code></td><td>最新100行のログを表示</td></tr>
+              <tr><td class="cmd"><code>docker cp <var>name</var>:<var>/path</var> <var>./local</var></code></td><td>コンテナからファイルをコピー</td></tr>
+              <tr><td class="cmd"><code>docker cp <var>./local</var> <var>name</var>:<var>/path</var></code></td><td>コンテナへファイルをコピー</td></tr>
+              <tr><td class="cmd"><code>docker attach <var>name</var></code></td><td>実行中コンテナの標準入出力に接続</td></tr>
             </tbody>
           </table>
         </article>
@@ -824,16 +833,16 @@
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>docker build -t name .</code></td><td>Dockerfileからイメージをビルド</td></tr>
-              <tr><td class="cmd"><code>docker build --no-cache -t name .</code></td><td>キャッシュなしでビルド</td></tr>
-              <tr><td class="cmd"><code>docker pull image</code></td><td>レジストリからイメージを取得</td></tr>
-              <tr><td class="cmd"><code>docker push image</code></td><td>レジストリにイメージをプッシュ</td></tr>
+              <tr><td class="cmd"><code>docker build -t <var>name</var> .</code></td><td>Dockerfileからイメージをビルド</td></tr>
+              <tr><td class="cmd"><code>docker build --no-cache -t <var>name</var> .</code></td><td>キャッシュなしでビルド</td></tr>
+              <tr><td class="cmd"><code>docker pull <var>image</var></code></td><td>レジストリからイメージを取得</td></tr>
+              <tr><td class="cmd"><code>docker push <var>image</var></code></td><td>レジストリにイメージをプッシュ</td></tr>
               <tr><td class="cmd"><code>docker images</code></td><td>ローカルイメージの一覧を表示</td></tr>
-              <tr><td class="cmd"><code>docker rmi image</code></td><td>イメージを削除</td></tr>
-              <tr><td class="cmd"><code>docker tag src dst</code></td><td>イメージにタグを付ける</td></tr>
+              <tr><td class="cmd"><code>docker rmi <var>image</var></code></td><td>イメージを削除</td></tr>
+              <tr><td class="cmd"><code>docker tag <var>src</var> <var>dst</var></code></td><td>イメージにタグを付ける</td></tr>
               <tr><td class="cmd"><code>docker image prune</code></td><td>未使用イメージを削除</td></tr>
-              <tr><td class="cmd"><code>docker save -o file.tar image</code></td><td>イメージをtarファイルに保存</td></tr>
-              <tr><td class="cmd"><code>docker load -i file.tar</code></td><td>tarファイルからイメージを読み込み</td></tr>
+              <tr><td class="cmd"><code>docker save -o <var>file.tar</var> <var>image</var></code></td><td>イメージをtarファイルに保存</td></tr>
+              <tr><td class="cmd"><code>docker load -i <var>file.tar</var></code></td><td>tarファイルからイメージを読み込み</td></tr>
             </tbody>
           </table>
         </article>
@@ -850,7 +859,7 @@
               <tr><td class="cmd"><code>docker compose down -v</code></td><td>ボリュームも含めて削除</td></tr>
               <tr><td class="cmd"><code>docker compose ps</code></td><td>サービスの状態を表示</td></tr>
               <tr><td class="cmd"><code>docker compose logs -f</code></td><td>全サービスのログをリアルタイム表示</td></tr>
-              <tr><td class="cmd"><code>docker compose exec svc sh</code></td><td>サービスコンテナでシェルを開く</td></tr>
+              <tr><td class="cmd"><code>docker compose exec <var>svc</var> sh</code></td><td>サービスコンテナでシェルを開く</td></tr>
               <tr><td class="cmd"><code>docker compose build</code></td><td>サービスのイメージをビルド</td></tr>
               <tr><td class="cmd"><code>docker compose pull</code></td><td>サービスのイメージを取得</td></tr>
               <tr><td class="cmd"><code>docker compose restart</code></td><td>サービスを再起動</td></tr>
@@ -865,13 +874,13 @@
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
               <tr><td class="cmd"><code>docker network ls</code></td><td>ネットワーク一覧を表示</td></tr>
-              <tr><td class="cmd"><code>docker network create name</code></td><td>ネットワークを作成</td></tr>
-              <tr><td class="cmd"><code>docker network rm name</code></td><td>ネットワークを削除</td></tr>
-              <tr><td class="cmd"><code>docker network inspect name</code></td><td>ネットワークの詳細を表示</td></tr>
+              <tr><td class="cmd"><code>docker network create <var>name</var></code></td><td>ネットワークを作成</td></tr>
+              <tr><td class="cmd"><code>docker network rm <var>name</var></code></td><td>ネットワークを削除</td></tr>
+              <tr><td class="cmd"><code>docker network inspect <var>name</var></code></td><td>ネットワークの詳細を表示</td></tr>
               <tr><td class="cmd"><code>docker volume ls</code></td><td>ボリューム一覧を表示</td></tr>
-              <tr><td class="cmd"><code>docker volume create name</code></td><td>ボリュームを作成</td></tr>
-              <tr><td class="cmd"><code>docker volume rm name</code></td><td>ボリュームを削除</td></tr>
-              <tr><td class="cmd"><code>docker volume inspect name</code></td><td>ボリュームの詳細を表示</td></tr>
+              <tr><td class="cmd"><code>docker volume create <var>name</var></code></td><td>ボリュームを作成</td></tr>
+              <tr><td class="cmd"><code>docker volume rm <var>name</var></code></td><td>ボリュームを削除</td></tr>
+              <tr><td class="cmd"><code>docker volume inspect <var>name</var></code></td><td>ボリュームの詳細を表示</td></tr>
             </tbody>
           </table>
         </article>
@@ -881,11 +890,11 @@
           <table>
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>docker inspect name</code></td><td>コンテナ/イメージの詳細情報をJSON表示</td></tr>
+              <tr><td class="cmd"><code>docker inspect <var>name</var></code></td><td>コンテナ/イメージの詳細情報をJSON表示</td></tr>
               <tr><td class="cmd"><code>docker stats</code></td><td>全コンテナのリソース使用量をリアルタイム表示</td></tr>
-              <tr><td class="cmd"><code>docker top name</code></td><td>コンテナ内のプロセスを表示</td></tr>
-              <tr><td class="cmd"><code>docker diff name</code></td><td>コンテナのファイルシステム変更を表示</td></tr>
-              <tr><td class="cmd"><code>docker history image</code></td><td>イメージのレイヤー履歴を表示</td></tr>
+              <tr><td class="cmd"><code>docker top <var>name</var></code></td><td>コンテナ内のプロセスを表示</td></tr>
+              <tr><td class="cmd"><code>docker diff <var>name</var></code></td><td>コンテナのファイルシステム変更を表示</td></tr>
+              <tr><td class="cmd"><code>docker history <var>image</var></code></td><td>イメージのレイヤー履歴を表示</td></tr>
               <tr><td class="cmd"><code>docker system df</code></td><td>Dockerのディスク使用量を表示</td></tr>
               <tr><td class="cmd"><code>docker system prune</code></td><td>未使用リソースを一括削除</td></tr>
               <tr><td class="cmd"><code>docker system prune -a</code></td><td>全未使用イメージも含めて一括削除</td></tr>
@@ -913,6 +922,37 @@
               <tr><td class="cmd"><code>/init</code></td><td>プロジェクトのCLAUDE.mdを初期化</td></tr>
               <tr><td class="cmd"><code>/config</code></td><td>設定画面を開く</td></tr>
               <tr><td class="cmd"><code>/doctor</code></td><td>インストール状態を診断</td></tr>
+              <tr><td class="cmd"><kbd>Shift+Tab</kbd></td><td>権限モード切替（通常→自動承認→プラン）</td></tr>
+              <tr><td class="cmd"><code>/fast</code></td><td>高速出力モードを切替（2.5倍速）</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>起動オプション</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>claude</code></td><td>インタラクティブREPLを開始</td></tr>
+              <tr><td class="cmd"><code>claude "<var>prompt</var>"</code></td><td>初期プロンプト付きで開始</td></tr>
+              <tr><td class="cmd"><code>claude -p "<var>prompt</var>"</code></td><td>プリントモード（結果を出力して終了）</td></tr>
+              <tr><td class="cmd"><code>cat <var>file</var> | claude -p "<var>prompt</var>"</code></td><td>パイプで入力を受け取って実行</td></tr>
+              <tr><td class="cmd"><code>claude -c</code></td><td>直前の会話を継続</td></tr>
+              <tr><td class="cmd"><code>claude -r "<var>session</var>"</code></td><td>セッションIDまたは名前で再開</td></tr>
+              <tr><td class="cmd"><code>claude --model <var>model</var></code></td><td>モデルを指定して起動（opus/sonnet/haiku）</td></tr>
+              <tr><td class="cmd"><code>claude --allowedTools "<var>tools</var>"</code></td><td>使用可能なツールを制限</td></tr>
+              <tr><td class="cmd"><code>claude --verbose</code></td><td>詳細ログを表示</td></tr>
+              <tr><td class="cmd"><code>claude -o <var>format</var></code></td><td>出力形式を指定（text/json/stream-json）</td></tr>
+              <tr><td class="cmd"><code>claude --permission-mode <var>mode</var></code></td><td>権限モードを指定して起動</td></tr>
+              <tr><td class="cmd"><code>claude --dangerously-skip-permissions</code></td><td>全権限確認をスキップ</td></tr>
+              <tr><td class="cmd"><code>claude -w</code></td><td>Gitワークツリーで隔離して起動</td></tr>
+              <tr><td class="cmd"><code>claude --max-turns <var>N</var></code></td><td>エージェントのターン数を制限（-p用）</td></tr>
+              <tr><td class="cmd"><code>claude --max-budget-usd <var>N</var></code></td><td>API使用量の上限をドルで設定（-p用）</td></tr>
+              <tr><td class="cmd"><code>claude update</code></td><td>最新版にアップデート</td></tr>
+              <tr><td class="cmd"><code>claude config</code></td><td>設定を管理（set/get/list）</td></tr>
+              <tr><td class="cmd"><code>claude mcp add <var>name</var></code></td><td>MCPサーバーを追加</td></tr>
+              <tr><td class="cmd"><code>claude auth login</code></td><td>ログイン（--sso対応）</td></tr>
+              <tr><td class="cmd"><code>claude agents</code></td><td>設定済みサブエージェントを一覧表示</td></tr>
             </tbody>
           </table>
         </article>
@@ -923,8 +963,8 @@
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
               <tr><td class="cmd"><code>/exit</code></td><td>REPLを終了してセッションを閉じる</td></tr>
-              <tr><td class="cmd"><code>/resume [session]</code></td><td>IDまたは名前で会話を再開</td></tr>
-              <tr><td class="cmd"><code>/rename &lt;name&gt;</code></td><td>現在のセッション名を変更</td></tr>
+              <tr><td class="cmd"><code>/resume [<var>session</var>]</code></td><td>IDまたは名前で会話を再開</td></tr>
+              <tr><td class="cmd"><code>/rename &lt;<var>name</var>&gt;</code></td><td>現在のセッション名を変更</td></tr>
               <tr><td class="cmd"><code>/teleport</code></td><td>claude.aiのリモートセッションを再開</td></tr>
               <tr><td class="cmd"><code>/desktop</code></td><td>セッションをDesktopアプリに引き継ぎ</td></tr>
             </tbody>
@@ -937,10 +977,10 @@
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
               <tr><td class="cmd"><code>/clear</code></td><td>会話履歴をクリア</td></tr>
-              <tr><td class="cmd"><code>/compact [指示]</code></td><td>会話を圧縮（フォーカス指示付き可）</td></tr>
+              <tr><td class="cmd"><code>/compact [<var>指示</var>]</code></td><td>会話を圧縮（フォーカス指示付き可）</td></tr>
               <tr><td class="cmd"><code>/rewind</code></td><td>会話やコードを巻き戻し</td></tr>
               <tr><td class="cmd"><code>/context</code></td><td>コンテキスト使用量を視覚化</td></tr>
-              <tr><td class="cmd"><code>/export [filename]</code></td><td>会話をファイルまたはクリップボードにエクスポート</td></tr>
+              <tr><td class="cmd"><code>/export [<var>filename</var>]</code></td><td>会話をファイルまたはクリップボードにエクスポート</td></tr>
               <tr><td class="cmd"><code>/copy</code></td><td>最後のアシスタント応答をクリップボードにコピー</td></tr>
             </tbody>
           </table>
@@ -957,6 +997,8 @@
               <tr><td class="cmd"><code>/statusline</code></td><td>ステータスラインUIを設定</td></tr>
               <tr><td class="cmd"><code>/theme</code></td><td>カラーテーマを変更</td></tr>
               <tr><td class="cmd"><code>/vim</code></td><td>Vimスタイル編集モードを切替</td></tr>
+              <tr><td class="cmd"><code>/hooks</code></td><td>フックの管理（表示・追加・削除）</td></tr>
+              <tr><td class="cmd"><code>/terminal-setup</code></td><td>Shift+Enterキーバインドを設定</td></tr>
             </tbody>
           </table>
         </article>
@@ -971,6 +1013,21 @@
               <tr><td class="cmd"><code>/cost</code></td><td>トークン使用量とコストを表示</td></tr>
               <tr><td class="cmd"><code>/stats</code></td><td>日次使用量・セッション履歴を視覚化</td></tr>
               <tr><td class="cmd"><code>/usage</code></td><td>プラン使用量とレートリミットを表示</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>シンキング・拡張思考</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><kbd>Option+T</kbd></td><td>拡張思考のオン/オフを切替（デフォルトON）</td></tr>
+              <tr><td class="cmd"><code>/model</code> + <kbd>←→</kbd></td><td>effortレベルを調整（low/medium/high）</td></tr>
+              <tr><td class="cmd"><code>/fast</code></td><td>高速モード切替（同一モデル、2.5倍速）</td></tr>
+              <tr><td class="cmd"><kbd>Ctrl+O</kbd></td><td>詳細出力（思考プロセスの表示）を切替</td></tr>
+              <tr><td class="cmd"><code>CLAUDE_CODE_EFFORT_LEVEL</code></td><td>effortレベルを環境変数で設定（low/medium/high）</td></tr>
+              <tr><td class="cmd"><code>MAX_THINKING_TOKENS=0</code></td><td>拡張思考を無効化（Opus 4.6は0のみ有効）</td></tr>
             </tbody>
           </table>
         </article>
@@ -994,7 +1051,7 @@
             <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
               <tr><td class="cmd"><code>/doctor</code></td><td>インストール状態のヘルスチェック</td></tr>
-              <tr><td class="cmd"><code>/debug [説明]</code></td><td>セッションデバッグログでトラブルシュート</td></tr>
+              <tr><td class="cmd"><code>/debug [<var>説明</var>]</code></td><td>セッションデバッグログでトラブルシュート</td></tr>
               <tr><td class="cmd"><code>/mcp</code></td><td>MCPサーバー接続を管理</td></tr>
             </tbody>
           </table>
@@ -1005,9 +1062,134 @@
           <table>
             <thead class="sr-only"><tr><th>Input</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><code>! cmd</code></td><td>Bashモード — コマンドを直接実行</td></tr>
+              <tr><td class="cmd"><code>! <var>cmd</var></code></td><td>Bashモード — コマンドを直接実行</td></tr>
               <tr><td class="cmd"><code>@</code></td><td>ファイルパスの自動補完を起動</td></tr>
               <tr><td class="cmd"><code>/</code></td><td>コマンド・スキル一覧を表示</td></tr>
+              <tr><td class="cmd"><kbd>Shift+Tab</kbd></td><td>権限モード切替（通常→自動承認→プラン）</td></tr>
+              <tr><td class="cmd"><kbd>Option+T</kbd></td><td>拡張思考のオン/オフを切替</td></tr>
+              <tr><td class="cmd"><kbd>Ctrl+G</kbd></td><td>外部エディタでプロンプトを編集</td></tr>
+              <tr><td class="cmd"><kbd>Esc Esc</kbd></td><td>会話やコードを巻き戻し</td></tr>
+              <tr><td class="cmd"><kbd>Ctrl+V</kbd></td><td>クリップボードから画像を貼り付け</td></tr>
+              <tr><td class="cmd"><kbd>Ctrl+L</kbd></td><td>ターミナル画面をクリア（履歴は保持）</td></tr>
+              <tr><td class="cmd"><kbd>Option+P</kbd></td><td>プロンプトを保持してモデルを切替</td></tr>
+              <tr><td class="cmd"><kbd>\ + Enter</kbd></td><td>改行（マルチライン入力）</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==================== CODEX ==================== -->
+    <section role="tabpanel" id="panel-codex" aria-labelledby="tab-codex" hidden>
+      <div class="categories-grid">
+
+        <article class="category quick-ref">
+          <h2>よく使うコマンド</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>codex</code></td><td>インタラクティブセッションを開始</td></tr>
+              <tr><td class="cmd"><code>codex "<var>prompt</var>"</code></td><td>プロンプト付きで開始</td></tr>
+              <tr><td class="cmd"><code>codex --full-auto</code></td><td>全自動モードで起動</td></tr>
+              <tr><td class="cmd"><code>codex -m <var>model</var></code></td><td>モデルを指定して起動</td></tr>
+              <tr><td class="cmd"><code>codex exec "<var>prompt</var>"</code></td><td>非対話モードで実行（CI向け）</td></tr>
+              <tr><td class="cmd"><code>/diff</code></td><td>Gitの差分を表示</td></tr>
+              <tr><td class="cmd"><code>/compact</code></td><td>会話を圧縮してトークンを節約</td></tr>
+              <tr><td class="cmd"><code>/model</code></td><td>使用モデルを変更</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>起動オプション</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>codex</code></td><td>インタラクティブTUIを開始</td></tr>
+              <tr><td class="cmd"><code>codex "<var>prompt</var>"</code></td><td>プロンプト付きで開始</td></tr>
+              <tr><td class="cmd"><code>codex exec "<var>prompt</var>"</code></td><td>非対話モードで実行（CI向け）</td></tr>
+              <tr><td class="cmd"><code>codex exec resume --last "<var>prompt</var>"</code></td><td>直前のセッションを継続して実行</td></tr>
+              <tr><td class="cmd"><code>codex -m <var>model</var></code></td><td>モデルを指定して起動</td></tr>
+              <tr><td class="cmd"><code>codex -a <var>policy</var></code></td><td>承認ポリシーを指定して起動</td></tr>
+              <tr><td class="cmd"><code>codex -s <var>mode</var></code></td><td>サンドボックスモードを指定</td></tr>
+              <tr><td class="cmd"><code>codex --full-auto</code></td><td>全自動モード（workspace-write + on-request）</td></tr>
+              <tr><td class="cmd"><code>codex -i <var>image</var></code></td><td>画像ファイルを添付して起動</td></tr>
+              <tr><td class="cmd"><code>codex -C <var>path</var></code></td><td>作業ディレクトリを指定</td></tr>
+              <tr><td class="cmd"><code>codex -p <var>profile</var></code></td><td>設定プロファイルを使用</td></tr>
+              <tr><td class="cmd"><code>codex --oss</code></td><td>ローカルモデル（Ollama）を使用</td></tr>
+              <tr><td class="cmd"><code>codex --search</code></td><td>ライブWeb検索を有効化</td></tr>
+              <tr><td class="cmd"><code>codex --yolo</code></td><td>全承認・サンドボックスをバイパス</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>承認・サンドボックス</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Mode</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>untrusted</code></td><td>全操作に確認が必要（承認ポリシーのデフォルト）</td></tr>
+              <tr><td class="cmd"><code>on-request</code></td><td>スコープ内は自動、スコープ外は確認</td></tr>
+              <tr><td class="cmd"><code>never</code></td><td>全操作を自動承認</td></tr>
+              <tr><td class="cmd"><code>read-only</code></td><td>読み取り専用サンドボックス（デフォルト）</td></tr>
+              <tr><td class="cmd"><code>workspace-write</code></td><td>作業ディレクトリへの書き込み許可</td></tr>
+              <tr><td class="cmd"><code>danger-full-access</code></td><td>全アクセス許可（ネットワーク含む）</td></tr>
+              <tr><td class="cmd"><code>/permissions</code></td><td>セッション中に承認設定を変更</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>セッション操作</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>/model</code></td><td>使用モデルを変更</td></tr>
+              <tr><td class="cmd"><code>/permissions</code></td><td>承認・サンドボックス設定を変更</td></tr>
+              <tr><td class="cmd"><code>/plan</code></td><td>プランモードに切替</td></tr>
+              <tr><td class="cmd"><code>/diff</code></td><td>Gitの差分（未追跡含む）を表示</td></tr>
+              <tr><td class="cmd"><code>/review</code></td><td>ワーキングツリーのレビューを依頼</td></tr>
+              <tr><td class="cmd"><code>/compact</code></td><td>会話を圧縮してトークンを節約</td></tr>
+              <tr><td class="cmd"><code>/new</code></td><td>同一セッション内で新しい会話を開始</td></tr>
+              <tr><td class="cmd"><code>/fork</code></td><td>現在の会話を複製して分岐</td></tr>
+              <tr><td class="cmd"><code>/init</code></td><td>AGENTS.mdのひな形を生成</td></tr>
+              <tr><td class="cmd"><code>/mention</code></td><td>ファイルを会話に添付</td></tr>
+              <tr><td class="cmd"><code>/status</code></td><td>セッション設定とトークン使用量を表示</td></tr>
+              <tr><td class="cmd"><code>/exit</code></td><td>セッションを終了</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>設定・環境</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Item</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>OPENAI_API_KEY</code></td><td>OpenAI APIキー（必須の環境変数）</td></tr>
+              <tr><td class="cmd"><code>CODEX_HOME</code></td><td>設定ディレクトリを指定（デフォルト: ~/.codex）</td></tr>
+              <tr><td class="cmd"><code>OPENAI_BASE_URL</code></td><td>APIエンドポイントを上書き</td></tr>
+              <tr><td class="cmd"><code>~/.codex/config.toml</code></td><td>ユーザー設定ファイル</td></tr>
+              <tr><td class="cmd"><code>.codex/config.toml</code></td><td>プロジェクト設定ファイル</td></tr>
+              <tr><td class="cmd"><code>AGENTS.md</code></td><td>プロジェクトルートの指示ファイル</td></tr>
+              <tr><td class="cmd"><code>~/.codex/AGENTS.md</code></td><td>グローバル指示ファイル</td></tr>
+              <tr><td class="cmd"><code>CODEX_API_KEY</code></td><td>exec用APIキー（CI/自動化向け）</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>キーボードショートカット</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Shortcut</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><kbd>@</kbd></td><td>ファイルパスの検索・補完を起動</td></tr>
+              <tr><td class="cmd"><kbd>Ctrl+G</kbd></td><td>外部エディタでプロンプトを編集</td></tr>
+              <tr><td class="cmd"><kbd>Ctrl+C</kbd></td><td>中断 / セッションを終了</td></tr>
+              <tr><td class="cmd"><kbd>Esc Esc</kbd></td><td>前のメッセージを編集（連打で遡る）</td></tr>
+              <tr><td class="cmd"><kbd>Enter</kbd>（実行中）</td><td>実行中に追加の指示を注入</td></tr>
+              <tr><td class="cmd"><kbd>Tab</kbd></td><td>次のターンのフォローアップを予約</td></tr>
+              <tr><td class="cmd"><code>!<var>cmd</var></code></td><td>シェルコマンドを直接実行</td></tr>
             </tbody>
           </table>
         </article>
@@ -1160,7 +1342,7 @@
   </main>
 
   <footer>
-    <p>Command Cheat Sheet — Linux Terminal / Git / Linux Server / Docker / Claude Code / cmux</p>
+    <p>Command Cheat Sheet — Linux Terminal / Git / Linux Server / Docker / Claude Code / Codex / cmux</p>
   </footer>
 
   <script>
@@ -1215,7 +1397,7 @@
       });
 
       var hash = window.location.hash.slice(1);
-      var validTopics = ['terminal', 'git', 'server', 'docker', 'claude', 'cmux'];
+      var validTopics = ['terminal', 'git', 'server', 'docker', 'claude', 'codex', 'cmux'];
       if (validTopics.indexOf(hash) !== -1) {
         var tab = document.getElementById('tab-' + hash);
         if (tab) activateTab(tab);
