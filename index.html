@@ -316,7 +316,7 @@
       <button role="tab" aria-selected="false" aria-controls="panel-docker" id="tab-docker">Docker</button>
       <button role="tab" aria-selected="false" aria-controls="panel-claude" id="tab-claude">Claude Code</button>
       <button role="tab" aria-selected="false" aria-controls="panel-codex" id="tab-codex">Codex</button>
-      <button role="tab" aria-selected="false" aria-controls="panel-cmux" id="tab-cmux">cmux</button>
+      <button role="tab" aria-selected="false" aria-controls="panel-ghostty" id="tab-ghostty">Ghostty</button>
     </nav>
   </header>
 
@@ -1241,152 +1241,183 @@
       </div>
     </section>
 
-    <!-- ==================== CMUX ==================== -->
-    <section role="tabpanel" id="panel-cmux" aria-labelledby="tab-cmux" hidden>
+    <!-- ==================== GHOSTTY ==================== -->
+    <section role="tabpanel" id="panel-ghostty" aria-labelledby="tab-ghostty" hidden>
       <div class="categories-grid">
 
         <article class="category quick-ref">
-          <h2>よく使うショートカット</h2>
+          <h2>よく使うコマンド</h2>
           <table>
-            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
             <tbody>
-              <tr><td class="cmd"><kbd>⌘ T</kbd></td><td>新しいサーフェス(タブ)を作成</td></tr>
-              <tr><td class="cmd"><kbd>⌘ D</kbd></td><td>右に分割(縦分割)</td></tr>
-              <tr><td class="cmd"><kbd>⌘ ⇧ D</kbd></td><td>下に分割(横分割)</td></tr>
-              <tr><td class="cmd"><kbd>⌥ ⌘ ←→</kbd></td><td>隣のペインにフォーカス移動</td></tr>
-              <tr><td class="cmd"><kbd>⌘ W</kbd></td><td>サーフェスを閉じる</td></tr>
-              <tr><td class="cmd"><kbd>⌘ N</kbd></td><td>新しいワークスペースを作成</td></tr>
-              <tr><td class="cmd"><kbd>⌘ K</kbd></td><td>スクロールバックをクリア</td></tr>
-              <tr><td class="cmd"><kbd>⌘ F</kbd></td><td>検索バーを開く</td></tr>
-            </tbody>
-          </table>
-        </article>
-
-        <article class="category">
-          <h2>ワークスペース</h2>
-          <table>
-            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
-            <tbody>
-              <tr><td class="cmd"><kbd>⌘ N</kbd></td><td>新しいワークスペースを作成</td></tr>
-              <tr><td class="cmd"><kbd>⌘ 1</kbd>–<kbd>8</kbd></td><td>ワークスペース1〜8にジャンプ</td></tr>
-              <tr><td class="cmd"><kbd>⌘ 9</kbd></td><td>最後のワークスペースにジャンプ</td></tr>
-              <tr><td class="cmd"><kbd>⌃ ⌘ ]</kbd></td><td>次のワークスペースに移動</td></tr>
-              <tr><td class="cmd"><kbd>⌃ ⌘ [</kbd></td><td>前のワークスペースに移動</td></tr>
-              <tr><td class="cmd"><kbd>⌘ ⇧ W</kbd></td><td>ワークスペースを閉じる</td></tr>
-              <tr><td class="cmd"><kbd>⌘ ⇧ R</kbd></td><td>ワークスペースをリネーム</td></tr>
-              <tr><td class="cmd"><kbd>⌘ B</kbd></td><td>サイドバーの表示/非表示を切替</td></tr>
-            </tbody>
-          </table>
-        </article>
-
-        <article class="category">
-          <h2>サーフェス（タブ）</h2>
-          <table>
-            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
-            <tbody>
-              <tr><td class="cmd"><kbd>⌘ T</kbd></td><td>新しいサーフェス(タブ)を作成</td></tr>
-              <tr><td class="cmd"><kbd>⌘ ⇧ ]</kbd></td><td>次のサーフェスに移動</td></tr>
-              <tr><td class="cmd"><kbd>⌘ ⇧ [</kbd></td><td>前のサーフェスに移動</td></tr>
-              <tr><td class="cmd"><kbd>⌃ Tab</kbd></td><td>次のサーフェスに移動</td></tr>
-              <tr><td class="cmd"><kbd>⌃ ⇧ Tab</kbd></td><td>前のサーフェスに移動</td></tr>
-              <tr><td class="cmd"><kbd>⌃ 1</kbd>–<kbd>8</kbd></td><td>サーフェス1〜8にジャンプ</td></tr>
-              <tr><td class="cmd"><kbd>⌃ 9</kbd></td><td>最後のサーフェスにジャンプ</td></tr>
-              <tr><td class="cmd"><kbd>⌘ W</kbd></td><td>サーフェスを閉じる</td></tr>
-            </tbody>
-          </table>
-        </article>
-
-        <article class="category">
-          <h2>画面分割</h2>
-          <table>
-            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
-            <tbody>
-              <tr><td class="cmd"><kbd>⌘ D</kbd></td><td>右に分割(縦分割)</td></tr>
-              <tr><td class="cmd"><kbd>⌘ ⇧ D</kbd></td><td>下に分割(横分割)</td></tr>
-              <tr><td class="cmd"><kbd>⌥ ⌘ ←</kbd></td><td>左のペインにフォーカス</td></tr>
-              <tr><td class="cmd"><kbd>⌥ ⌘ →</kbd></td><td>右のペインにフォーカス</td></tr>
-              <tr><td class="cmd"><kbd>⌥ ⌘ ↑</kbd></td><td>上のペインにフォーカス</td></tr>
-              <tr><td class="cmd"><kbd>⌥ ⌘ ↓</kbd></td><td>下のペインにフォーカス</td></tr>
-              <tr><td class="cmd"><kbd>⌘ ⇧ H</kbd></td><td>フォーカス中のパネルをフラッシュ表示</td></tr>
-            </tbody>
-          </table>
-        </article>
-
-        <article class="category">
-          <h2>ブラウザ</h2>
-          <table>
-            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
-            <tbody>
-              <tr><td class="cmd"><kbd>⌘ ⇧ L</kbd></td><td>分割でブラウザを開く</td></tr>
-              <tr><td class="cmd"><kbd>⌘ L</kbd></td><td>アドレスバーにフォーカス</td></tr>
-              <tr><td class="cmd"><kbd>⌘ [</kbd></td><td>前のページに戻る</td></tr>
-              <tr><td class="cmd"><kbd>⌘ ]</kbd></td><td>次のページに進む</td></tr>
-              <tr><td class="cmd"><kbd>⌘ R</kbd></td><td>ページをリロード</td></tr>
-              <tr><td class="cmd"><kbd>⌥ ⌘ I</kbd></td><td>デベロッパーツールを切替</td></tr>
-              <tr><td class="cmd"><kbd>⌥ ⌘ C</kbd></td><td>JavaScriptコンソールを表示</td></tr>
-            </tbody>
-          </table>
-        </article>
-
-        <article class="category">
-          <h2>通知</h2>
-          <table>
-            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
-            <tbody>
-              <tr><td class="cmd"><kbd>⌘ I</kbd></td><td>通知パネルを表示</td></tr>
-              <tr><td class="cmd"><kbd>⌘ ⇧ U</kbd></td><td>最新の未読通知にジャンプ</td></tr>
-            </tbody>
-          </table>
-        </article>
-
-        <article class="category">
-          <h2>検索</h2>
-          <table>
-            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
-            <tbody>
-              <tr><td class="cmd"><kbd>⌘ F</kbd></td><td>検索バーを開く</td></tr>
-              <tr><td class="cmd"><kbd>⌘ G</kbd></td><td>次の検索結果へ</td></tr>
-              <tr><td class="cmd"><kbd>⌘ ⇧ G</kbd></td><td>前の検索結果へ</td></tr>
-              <tr><td class="cmd"><kbd>⌘ ⇧ F</kbd></td><td>検索バーを非表示</td></tr>
-              <tr><td class="cmd"><kbd>⌘ E</kbd></td><td>選択テキストを検索に使用</td></tr>
-            </tbody>
-          </table>
-        </article>
-
-        <article class="category">
-          <h2>ターミナル</h2>
-          <table>
-            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
-            <tbody>
-              <tr><td class="cmd"><kbd>⌘ K</kbd></td><td>スクロールバックをクリア</td></tr>
-              <tr><td class="cmd"><kbd>⌘ C</kbd></td><td>コピー(選択時)</td></tr>
-              <tr><td class="cmd"><kbd>⌘ V</kbd></td><td>ペースト</td></tr>
-              <tr><td class="cmd"><kbd>⌘ +</kbd></td><td>フォントサイズを拡大</td></tr>
-              <tr><td class="cmd"><kbd>⌘ -</kbd></td><td>フォントサイズを縮小</td></tr>
-              <tr><td class="cmd"><kbd>⌘ 0</kbd></td><td>フォントサイズをリセット</td></tr>
-            </tbody>
-          </table>
-        </article>
-
-        <article class="category">
-          <h2>ウィンドウ</h2>
-          <table>
-            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
-            <tbody>
-              <tr><td class="cmd"><kbd>⌘ ⇧ N</kbd></td><td>新しいウィンドウを開く</td></tr>
-              <tr><td class="cmd"><kbd>⌘ ,</kbd></td><td>設定を開く</td></tr>
+              <tr><td class="cmd"><kbd>⌘ T</kbd></td><td>新しいタブを作成</td></tr>
+              <tr><td class="cmd"><kbd>⌘ N</kbd></td><td>新しいウィンドウを開く</td></tr>
+              <tr><td class="cmd"><kbd>⌘ D</kbd></td><td>右に分割（縦分割）</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ D</kbd></td><td>下に分割（横分割）</td></tr>
+              <tr><td class="cmd"><kbd>⌘ W</kbd></td><td>タブ/分割を閉じる</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ,</kbd></td><td>設定ファイルを開く</td></tr>
               <tr><td class="cmd"><kbd>⌘ ⇧ ,</kbd></td><td>設定をリロード</td></tr>
-              <tr><td class="cmd"><kbd>⌘ Q</kbd></td><td>アプリケーションを終了</td></tr>
+              <tr><td class="cmd"><kbd>⌘ F</kbd></td><td>検索バーを開く</td></tr>
+              <tr><td class="cmd"><code>ghostty +list-themes</code></td><td>テーマ一覧を表示</td></tr>
+              <tr><td class="cmd"><code>ghostty +list-fonts</code></td><td>フォント一覧を表示</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>CLIコマンド</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>ghostty</code></td><td>Ghosttyを起動</td></tr>
+              <tr><td class="cmd"><code>ghostty -e <var>cmd</var></code></td><td>コマンドを指定して起動</td></tr>
+              <tr><td class="cmd"><code>ghostty +version</code></td><td>バージョン情報を表示</td></tr>
+              <tr><td class="cmd"><code>ghostty +list-themes</code></td><td>テーマ一覧（--color dark/light対応）</td></tr>
+              <tr><td class="cmd"><code>ghostty +list-fonts</code></td><td>フォント一覧（--family "Name"で絞込み）</td></tr>
+              <tr><td class="cmd"><code>ghostty +list-keybinds</code></td><td>設定済みキーバインドを一覧</td></tr>
+              <tr><td class="cmd"><code>ghostty +list-keybinds --default</code></td><td>デフォルトキーバインドを一覧</td></tr>
+              <tr><td class="cmd"><code>ghostty +list-actions</code></td><td>キーバインド用アクション一覧</td></tr>
+              <tr><td class="cmd"><code>ghostty +show-config</code></td><td>現在の設定を表示</td></tr>
+              <tr><td class="cmd"><code>ghostty +show-config --default --docs</code></td><td>全設定項目をドキュメント付きで表示</td></tr>
+              <tr><td class="cmd"><code>ghostty +validate-config</code></td><td>設定ファイルの構文チェック</td></tr>
+              <tr><td class="cmd"><code>ghostty +list-colors</code></td><td>ターミナルカラーを一覧</td></tr>
+              <tr><td class="cmd"><code>ghostty +crash-report</code></td><td>クラッシュレポートを確認</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>基本設定</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Option</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>~/.config/ghostty/config</code></td><td>設定ファイルの場所</td></tr>
+              <tr><td class="cmd"><code>font-family = <var>name</var></code></td><td>フォントを指定</td></tr>
+              <tr><td class="cmd"><code>font-size = <var>14</var></code></td><td>フォントサイズ（小数点OK）</td></tr>
+              <tr><td class="cmd"><code>font-thicken = true</code></td><td>フォントを太く表示（macOS）</td></tr>
+              <tr><td class="cmd"><code>font-feature = <var>-calt</var></code></td><td>OpenType機能（-caltでリガチャ無効）</td></tr>
+              <tr><td class="cmd"><code>font-codepoint-map = <var>U+E000-U+E100=Nerd Font</var></code></td><td>Unicode範囲ごとにフォントを指定</td></tr>
+              <tr><td class="cmd"><code>cursor-style = <var>bar</var></code></td><td>カーソル形状（block/bar/underline）</td></tr>
+              <tr><td class="cmd"><code>cursor-style-blink = false</code></td><td>カーソル点滅のオン/オフ</td></tr>
+              <tr><td class="cmd"><code>window-decoration = <var>none</var></code></td><td>ウィンドウ装飾（auto/none/client/server）</td></tr>
+              <tr><td class="cmd"><code>window-padding-x = <var>4</var></code></td><td>横方向の余白（ピクセル）</td></tr>
+              <tr><td class="cmd"><code>window-padding-y = <var>4</var></code></td><td>縦方向の余白（ピクセル）</td></tr>
+              <tr><td class="cmd"><code>fullscreen = true</code></td><td>フルスクリーンで起動</td></tr>
+              <tr><td class="cmd"><code>maximize = true</code></td><td>最大化で起動（v1.1+）</td></tr>
+              <tr><td class="cmd"><code>command = <var>/bin/zsh</var></code></td><td>起動するシェルを指定</td></tr>
+              <tr><td class="cmd"><code>working-directory = <var>path</var></code></td><td>起動ディレクトリ（home/inherit/パス）</td></tr>
+              <tr><td class="cmd"><code>config-file = <var>path</var></code></td><td>追加の設定ファイルを読み込み</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>ウィンドウ・タブ</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><kbd>⌘ N</kbd></td><td>新しいウィンドウを開く</td></tr>
+              <tr><td class="cmd"><kbd>⌘ T</kbd></td><td>新しいタブを作成</td></tr>
+              <tr><td class="cmd"><kbd>⌘ W</kbd></td><td>タブ/分割を閉じる</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ W</kbd></td><td>ウィンドウを閉じる</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ ]</kbd></td><td>次のタブに移動</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ [</kbd></td><td>前のタブに移動</td></tr>
+              <tr><td class="cmd"><kbd>⌘ 1</kbd>–<kbd>8</kbd></td><td>タブ1〜8にジャンプ</td></tr>
+              <tr><td class="cmd"><kbd>⌘ 9</kbd></td><td>最後のタブにジャンプ</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ ←→</kbd></td><td>タブの位置を移動</td></tr>
+              <tr><td class="cmd"><kbd>⌘ Enter</kbd></td><td>フルスクリーンを切替</td></tr>
+              <tr><td class="cmd"><kbd>⌘ M</kbd></td><td>ウィンドウを最小化</td></tr>
+              <tr><td class="cmd"><kbd>⌘ Q</kbd></td><td>Ghosttyを終了</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>分割（スプリット）</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Shortcut</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><kbd>⌘ D</kbd></td><td>右に分割（縦分割）</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ D</kbd></td><td>下に分割（横分割）</td></tr>
+              <tr><td class="cmd"><kbd>⌥ ⌘ ←→↑↓</kbd></td><td>矢印方向のペインにフォーカス</td></tr>
+              <tr><td class="cmd"><kbd>⌘ [</kbd></td><td>前のスプリットにフォーカス</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ]</kbd></td><td>次のスプリットにフォーカス</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ Enter</kbd></td><td>スプリットのズーム切替</td></tr>
+              <tr><td class="cmd"><kbd>⌃ ⌘ ←→↑↓</kbd></td><td>スプリットのサイズを調整</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ⇧ E</kbd></td><td>スプリットを均等に配置</td></tr>
+              <tr><td class="cmd"><code>unfocused-split-opacity = <var>0.7</var></code></td><td>非フォーカス時のスプリットの透明度</td></tr>
+              <tr><td class="cmd"><code>focus-follows-mouse = true</code></td><td>マウスでスプリットのフォーカスを切替</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>テーマ・外観</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Option</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>theme = <var>Catppuccin Frappe</var></code></td><td>テーマを設定（数百種類内蔵）</td></tr>
+              <tr><td class="cmd"><code>theme = dark:<var>Dracula</var>,light:<var>GitHub</var></code></td><td>ダーク/ライトモード自動切替</td></tr>
+              <tr><td class="cmd"><code>background = <var>#1e1e2e</var></code></td><td>背景色</td></tr>
+              <tr><td class="cmd"><code>foreground = <var>#cdd6f4</var></code></td><td>前景色（文字色）</td></tr>
+              <tr><td class="cmd"><code>background-opacity = <var>0.9</var></code></td><td>背景の透過度（0〜1）</td></tr>
+              <tr><td class="cmd"><code>background-blur = <var>20</var></code></td><td>背景ぼかし強度（macOS/KDE）</td></tr>
+              <tr><td class="cmd"><code>background-image = <var>path</var></code></td><td>背景画像を設定（v1.2+）</td></tr>
+              <tr><td class="cmd"><code>palette = <var>0=#45475a</var></code></td><td>ターミナルカラー（0〜15）を個別指定</td></tr>
+              <tr><td class="cmd"><code>minimum-contrast = <var>1</var></code></td><td>最小コントラスト比（WCAG、1〜21）</td></tr>
+              <tr><td class="cmd"><code>window-theme = <var>ghostty</var></code></td><td>ウィンドウ外観（auto/system/light/dark/ghostty）</td></tr>
+              <tr><td class="cmd"><code>~/.config/ghostty/themes/<var>name</var></code></td><td>カスタムテーマファイルの保存先</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>シェル統合</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Option</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>shell-integration = detect</code></td><td>シェルを自動検出して統合（デフォルト）</td></tr>
+              <tr><td class="cmd"><code>shell-integration = none</code></td><td>シェル統合を無効化</td></tr>
+              <tr><td class="cmd"><code>shell-integration-features</code></td><td>cursor, sudo, title, ssh-env, ssh-terminfo</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ↑</kbd></td><td>前のプロンプトにジャンプ</td></tr>
+              <tr><td class="cmd"><kbd>⌘ ↓</kbd></td><td>次のプロンプトにジャンプ</td></tr>
+              <tr><td class="cmd"><kbd>⌥ クリック</kbd></td><td>プロンプト内のカーソルを移動</td></tr>
+              <tr><td class="cmd"><code>copy-on-select = true</code></td><td>選択時に自動コピー</td></tr>
+              <tr><td class="cmd"><code>clipboard-paste-protection</code></td><td>危険なペーストを確認ダイアログで保護</td></tr>
+              <tr><td class="cmd"><code>mouse-hide-while-typing = true</code></td><td>入力中にマウスカーソルを非表示</td></tr>
+              <tr><td class="cmd"><code>scrollback-limit = <var>10000000</var></code></td><td>スクロールバックのバッファサイズ（バイト）</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="category">
+          <h2>キーバインド設定</h2>
+          <table>
+            <thead class="sr-only"><tr><th>Syntax</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="cmd"><code>keybind = <var>trigger</var>=<var>action</var></code></td><td>キーバインドの基本構文</td></tr>
+              <tr><td class="cmd"><code>keybind = ctrl+a>n=new_window</code></td><td>キーシーケンス（>で連結）</td></tr>
+              <tr><td class="cmd"><code>keybind = global:<var>cmd+grave_accent</var>=<var>action</var></code></td><td>グローバル（他アプリでも有効）</td></tr>
+              <tr><td class="cmd"><code>keybind = unconsumed:<var>key</var>=<var>action</var></code></td><td>アプリにもキーを送信</td></tr>
+              <tr><td class="cmd"><code>keybind = <var>key</var>=unbind</code></td><td>既存のバインドを解除</td></tr>
+              <tr><td class="cmd"><code>keybind = <var>key</var>=ignore</code></td><td>キー入力を無視</td></tr>
+              <tr><td class="cmd"><code>keybind = <var>key</var>=text:<var>\x15</var></code></td><td>テキストを送信（Zig構文でエスケープ可）</td></tr>
+              <tr><td class="cmd"><code>keybind = <var>key</var>=csi:<var>A</var></code></td><td>CSIシーケンスを送信</td></tr>
+              <tr><td class="cmd"><code>keybind = clear</code></td><td>全デフォルトバインドをクリア</td></tr>
+              <tr><td class="cmd"><code>keybind = global:cmd+\`=toggle_quick_terminal</code></td><td>クイックターミナルを設定（画面上部からスライド）</td></tr>
+              <tr><td class="cmd"><code>quick-terminal-position = <var>top</var></code></td><td>クイックターミナルの位置（top/bottom/center等）</td></tr>
+              <tr><td class="cmd"><code>quick-terminal-size = <var>40%</var></code></td><td>クイックターミナルのサイズ</td></tr>
             </tbody>
           </table>
         </article>
 
       </div>
     </section>
+
   </main>
 
   <footer>
-    <p>Command Cheat Sheet — Linux Terminal / Git / Linux Server / Docker / Claude Code / Codex / cmux</p>
+    <p>Command Cheat Sheet — Linux Terminal / Git / Linux Server / Docker / Claude Code / Codex / Ghostty</p>
   </footer>
 
   <script>
@@ -1441,7 +1472,7 @@
       });
 
       var hash = window.location.hash.slice(1);
-      var validTopics = ['terminal', 'git', 'server', 'docker', 'claude', 'codex', 'cmux'];
+      var validTopics = ['terminal', 'git', 'server', 'docker', 'claude', 'codex', 'ghostty'];
       if (validTopics.indexOf(hash) !== -1) {
         var tab = document.getElementById('tab-' + hash);
         if (tab) activateTab(tab);
